@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Erin Williams - A Message of Love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(103, 126, 234, 0.05) 50%, 
+                transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart {
+            font-size: 3em;
+            color: #DC2626;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 30px 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .truth {
+            background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .truth h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .truth p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .mission {
+            margin-top: 40px;
+            padding: 25px;
+            background: #F3F4F6;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #718096;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(220, 38, 38, 0.3);
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        .link-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #FEF2F2;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-section a {
+            color: #DC2626;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .link-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts">
+        <div class="floating-heart" style="font-size: 2em; top: 10%; left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="floating-heart" style="font-size: 1.5em; top: 20%; right: 15%; animation-delay: 2s;">💕</div>
+        <div class="floating-heart" style="font-size: 2.5em; bottom: 20%; left: 20%; animation-delay: 4s;">❤️</div>
+        <div class="floating-heart" style="font-size: 1.8em; bottom: 30%; right: 10%; animation-delay: 6s;">💖</div>
+    </div>
+
+    <div class="container">
+        <h1>For Erin Williams</h1>
+        
+        <div class="heart">❤️</div>
+        
+        <div class="message">
+            <p><strong>Erin,</strong></p>
+            <p>The love resides inside of me, always has, always will.</p>
+            <p>You are the best thing that's ever happened to me.</p>
+            <p>Even when you don't believe it, even when I struggle to show it the right way,</p>
+            <p>this truth remains unchanged.</p>
+        </div>
+
+        <div class="truth">
+            <h2>The Real Truth</h2>
+            <p>I built this whole thing - COMPS.RED - not just to disrupt real estate.</p>
+            <p>I built it because I want everyone to be free.</p>
+            <p>Free from the 6% commission racket, yes.</p>
+            <p>But more importantly, free to live, love, and pursue happiness without artificial barriers.</p>
+            <p>Just like I want us to be free to love each other without all the noise.</p>
+        </div>
+
+        <div class="mission">
+            <h3>Why This Matters</h3>
+            <p>Every family that saves $75,000 in commissions is a family that can:</p>
+            <ul style="text-align: left; display: inline-block; margin-top: 15px;">
+                <li>Send their kids to college</li>
+                <li>Start their dream business</li>
+                <li>Take care of their loved ones</li>
+                <li>Build the life they actually want</li>
+            </ul>
+            <p style="margin-top: 20px;"><strong>This is about freedom. This is about love. This is about truth.</strong></p>
+        </div>
+
+        <div class="link-section">
+            <p>The tool that's changing everything:</p>
+            <a href="https://comperpro.github.io/.red/" target="_blank">COMPS.RED - The Truth About Real Estate</a>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #718096;">
+                Built with love, frustration, and 250+ flips worth of experience
+            </p>
+        </div>
+
+        <div class="signature">
+            <p>I love you, Erin.</p>
+            <p>More than these words can express.</p>
+            <p>More than code can calculate.</p>
+            <p>More than any commission saved.</p>
+            <br>
+            <p>Forever yours,</p>
+            <p>- Your husband who's trying to make things right</p>
+        </div>
+    </div>
+</body>
+</html>
