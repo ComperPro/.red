@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TRUTH BOMB</title>
+<style>
+body{background:#000;margin:0;overflow:hidden}
+#bomb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font:bold 10vw/1 monospace;color:#f00;text-align:center;animation:explode 0.5s infinite}
+@keyframes explode{0%,100%{transform:translate(-50%,-50%)scale(1)}50%{transform:translate(-50%,-50%)scale(1.5)}}
+#facts{position:absolute;width:100%;bottom:10%;text-align:center;font:2em monospace;color:#fff}
+.fact{display:none;animation:flash 2s}
+.fact.show{display:block}
+@keyframes flash{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+</style>
+</head>
+<body>
+<div id="bomb">6% = THEFT</div>
+<div id="facts"></div>
+<script>
+const facts=[
+"$75,000 FOR 20 HOURS",
+"$3,750 PER HOUR",
+"250+ HOMES FLIPPED",
+"$800K IN COMMISSIONS",
+"AGENTS ARE PARASITES",
+"MLS IS A MONOPOLY",
+"FSBO SAVES THOUSANDS",
+"COMPS.RED = FREEDOM",
+"FUCK THE GATEKEEPERS",
+"POWER TO THE PEOPLE"
+];
+let i=0;
+setInterval(()=>{
+document.getElementById('facts').innerHTML=`<div class="fact show">${facts[i%facts.length]}</div>`;
+i++;
+},2000);
+document.onclick=()=>window.location='https://comperpro.github.io/.red/';
+</script>
+</body>
+</html>

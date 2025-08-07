@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RED PILL</title>
+<style>
+body{background:#000;margin:0;overflow:hidden;font-family:monospace}
+canvas{display:block}
+#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f00;font-size:3em;text-align:center;pointer-events:none;text-shadow:0 0 20px #f00}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="msg">THE 6% IS A LIE<br>CLICK FOR TRUTH</div>
+<script>
+const c=document.getElementById('c');
+const ctx=c.getContext('2d');
+c.width=window.innerWidth;
+c.height=window.innerHeight;
+const chars='COMPSRED6%TRUTHFSBOKILLAGENTS$$$';
+const fontSize=14;
+const columns=c.width/fontSize;
+const drops=[];
+for(let i=0;i<columns;i++)drops[i]=1;
+function draw(){
+ctx.fillStyle='rgba(0,0,0,0.05)';
+ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle='#f00';
+ctx.font=fontSize+'px monospace';
+for(let i=0;i<drops.length;i++){
+const text=chars[Math.floor(Math.random()*chars.length)];
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+if(drops[i]*fontSize>c.height&&Math.random()>0.975)drops[i]=0;
+drops[i]++;
+}
+}
+setInterval(draw,33);
+document.onclick=()=>window.location='https://comperpro.github.io/.red/';
+</script>
+</body>
+</html>
