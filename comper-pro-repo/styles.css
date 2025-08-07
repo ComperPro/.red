@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #000;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.hero {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.05) 10px,
+        rgba(255,255,255,0.05) 20px
+    );
+    animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3.5em;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.stat {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 20px 50px;
+    background: #fff;
+    color: #ff0000;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.truth-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.truth-section h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #ff0000;
+}
+
+.truth-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.truth-card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #ff0000;
+    transition: all 0.3s ease;
+}
+
+.truth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+}
+
+.truth-card h3 {
+    font-size: 2em;
+    color: #ff0000;
+    margin-bottom: 15px;
+}
+
+.truth-card p {
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+.demo-section {
+    background: #111;
+    padding: 80px 20px;
+}
+
+.demo-section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #ff0000;
+}
+
+.demo-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #ff0000;
+    text-align: center;
+}
+
+.demo-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.demo-card p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+.demo-link {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #ff0000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.demo-link:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+}
+
+.cta-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+}
+
+.cta-section h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+footer {
+    background: #000;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+footer p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5em;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .truth-grid {
+        grid-template-columns: 1fr;
+    }
+}

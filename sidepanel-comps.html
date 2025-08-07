@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMPS.RED - Professional Comps</title>
+  <link rel="stylesheet" href="sidepanel-comps.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="panel-header">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="COMPS.RED" class="brand-logo" id="brandLogo">
+      <h1 class="brand-name" id="brandName">COMPS.RED</h1>
+    </div>
+    <div class="header-tagline">Deal Your Best Hand in Real Estate</div>
+  </header>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-label">Primary Card</span>
+      <span class="stat-value" id="primaryCardCount">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Hand Size</span>
+      <span class="stat-value" id="compCardCount">0</span>
+    </div>
+    <div class="deck-status" id="deckStatus">
+      🎴 Shuffle up and deal!
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="action-btn primary" id="drawCardBtn">
+      <span class="button-icon">🎴</span>
+      <span class="button-text">Deal Cards</span>
+    </button>
+    
+    <button class="action-btn secondary" id="viewDeckBtn">
+      <span class="button-icon">📊</span>
+      <span class="button-text">Score Hand</span>
+    </button>
+    
+    <button class="action-btn secondary" id="exportBtn">
+      <span class="button-icon">💾</span>
+      <span class="button-text">Cash Out</span>
+    </button>
+  </div>
+
+  <!-- Cards Container -->
+  <div class="cards-container" id="cardsContainer">
+    <!-- Cards will be dynamically added here -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="panel-footer">
+    <button class="footer-btn" id="clearDeckBtn">🔄 New Game</button>
+    <div class="version">v2.0.0</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="core/deck-framework.js"></script>
+  <script src="utils/enhanced-scoring-algorithm.js"></script>
+  <script src="utils/card-renderer.js"></script>
+  <script src="decks/comps-deck.js"></script>
+  <script src="sidepanel-comps.js"></script>
+</body>
+</html>

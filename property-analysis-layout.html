@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Analysis - 35 Green Valley Court</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header .address {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #4ade80;
+            color: #166534;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .section {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .metric {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .data-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .data-value {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .school-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .school-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .school-details {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+
+        .rating {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .agent-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .agent-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .agent-contact {
+            color: #6b7280;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .image-section {
+            width: 100%;
+            height: 300px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.2em;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .price-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .key-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .status-badge {
+                position: static;
+                display: inline-block;
+                margin-top: 15px;
+            }
+        }
+
+        .no-data {
+            color: #9ca3af;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Property Analysis</h1>
+            <div class="address">35 Green Valley Court, San Anselmo, CA 94960</div>
+            <div class="status-badge">For Sale</div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="section">
+                    <h2>Key Metrics</h2>
+                    <div class="key-metrics">
+                        <div class="metric">
+                            <div class="metric-value">3</div>
+                            <div class="metric-label">Bedrooms</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Bathrooms</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">1,731</div>
+                            <div class="metric-label">Sq Ft</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">--</div>
+                            <div class="metric-label">Year Built</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Property Details</h2>
+                    <div class="data-row">
+                        <span class="data-label">Zillow ID</span>
+                        <span class="data-value">19300283</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Property Type</span>
+                        <span class="data-value">Unknown</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Lot Size</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Days on Zillow</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Price/Sqft</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Financial Information</h2>
+                    <div class="data-row">
+                        <span class="data-label">Monthly Payment</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Property Taxes</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">HOA Fees</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Zestimate</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Rent Zestimate</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>School Information</h2>
+                    <div class="school-item">
+                        <div class="school-name">Elementary School</div>
+                        <div class="school-details">
+                            <span class="no-data">Information not available</span>
+                        </div>
+                    </div>
+                    <div class="school-item">
+                        <div class="school-name">Middle School</div>
+                        <div class="school-details">
+                            <span class="no-data">Information not available</span>
+                        </div>
+                    </div>
+                    <div class="school-item">
+                        <div class="school-name">High School</div>
+                        <div class="school-details">
+                            <span class="no-data">Information not available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="price-section">
+                    <div class="price-label">Asking Price</div>
+                    <div class="price-value no-data">TBD</div>
+                </div>
+
+                <div class="section">
+                    <h2>Market Activity</h2>
+                    <div class="data-row">
+                        <span class="data-label">Page Views</span>
+                        <span class="data-value no-data">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Saves</span>
+                        <span class="data-value no-data">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Days to Pending</span>
+                        <span class="data-value">0</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Listing Information</h2>
+                    <div class="agent-info">
+                        <div class="agent-name">Lei Ann A Werner</div>
+                        <div class="agent-contact">
+                            DRE #00994572<br>
+                            📞 415-710-0117<br>
+                            Golden Gate Sotheby's<br>
+                            415-464-9300
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <div class="data-row">
+                            <span class="data-label">MLS#</span>
+                            <span class="data-value">325021849</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Source</span>
+                            <span class="data-value">BAREIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Location Scores</h2>
+                    <div class="data-row">
+                        <span class="data-label">Walk Score</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Transit Score</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Bike Score</span>
+                        <span class="data-value no-data">Not Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
