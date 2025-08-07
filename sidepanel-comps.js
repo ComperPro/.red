@@ -11,9 +11,15 @@ class CompsRedSidePanel {
   }
 
   async initializePanel() {
-    console.log('[COMPS.RED] Initializing panel...');
+    console.log('[COMPS.RED] Initializing revolutionary real estate platform...');
+    
+    // Start loading animation
+    this.showLoadingScreen();
     
     try {
+      // Simulate realistic loading time for better UX
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
       // Create new comps deck
       this.currentDeck = new CompsDeck();
       console.log('[COMPS.RED] Deck created:', this.currentDeck);
@@ -27,8 +33,50 @@ class CompsRedSidePanel {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       console.log('[COMPS.RED] Current tab:', tab?.url);
       this.checkZillowPage(tab?.url);
+      
+      // Hide loading screen with smooth transition
+      this.hideLoadingScreen();
+      
+      // Show welcome message for first-time users
+      this.showWelcomeMessage();
+      
     } catch (error) {
       console.error('[COMPS.RED] Initialization error:', error);
+      this.hideLoadingScreen();
+      this.updateStatus('❌ Initialization failed - please refresh');
+    }
+  }
+
+  showLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'flex';
+      // Animate loading progress
+      const progress = loadingScreen.querySelector('.loading-progress');
+      if (progress) {
+        progress.style.animation = 'loading-progress 2s ease-in-out infinite';
+      }
+    }
+  }
+
+  hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+      loadingScreen.classList.add('hidden');
+      document.body.classList.remove('loading');
+      setTimeout(() => {
+        loadingScreen.remove();
+      }, 500);
+    }
+  }
+
+  showWelcomeMessage() {
+    const isFirstTime = !localStorage.getItem('comps-red-welcomed');
+    if (isFirstTime) {
+      setTimeout(() => {
+        this.updateStatus('🚀 Welcome to COMPS.RED - Revolutionizing real estate analysis!');
+        localStorage.setItem('comps-red-welcomed', 'true');
+      }, 500);
     }
   }
 
@@ -37,14 +85,18 @@ class CompsRedSidePanel {
     this.brandLogo = document.getElementById('brandLogo');
     this.brandName = document.getElementById('brandName');
     
-    // Stats display
+    // Enhanced stats display
     this.primaryCardCount = document.getElementById('primaryCardCount');
     this.compCardCount = document.getElementById('compCardCount');
+    this.suggestedValue = document.getElementById('suggestedValue');
+    this.accuracyScore = document.getElementById('accuracyScore');
     this.deckStatus = document.getElementById('deckStatus');
+    this.commissionSaved = document.querySelector('.saved-amount');
     
     // Action buttons
     this.drawCardBtn = document.getElementById('drawCardBtn');
     this.viewDeckBtn = document.getElementById('viewDeckBtn');
+    this.renovationBtn = document.getElementById('renovationBtn');
     this.exportBtn = document.getElementById('exportBtn');
     this.clearDeckBtn = document.getElementById('clearDeckBtn');
     
@@ -52,12 +104,17 @@ class CompsRedSidePanel {
     console.log('[COMPS.RED] Button elements found:', {
       drawCardBtn: !!this.drawCardBtn,
       viewDeckBtn: !!this.viewDeckBtn,
+      renovationBtn: !!this.renovationBtn,
       exportBtn: !!this.exportBtn,
       clearDeckBtn: !!this.clearDeckBtn
     });
     
     // Cards container
     this.cardsContainer = document.getElementById('cardsContainer');
+    
+    // Initialize renovation calculator
+    this.renovationCalc = new RenovationCalculator();
+    this.renovationUI = new RenovationUI(this.renovationCalc);
     
     // Update branding
     this.updateBranding();
@@ -126,6 +183,16 @@ class CompsRedSidePanel {
         console.log('[COMPS.RED] View deck/Score Hand button clicked');
         console.log('[COMPS.RED] Button ID:', e.target.id || e.target.parentElement.id);
         this.viewFullDeck();
+      });
+    }
+    
+    // Renovation button
+    if (this.renovationBtn) {
+      this.renovationBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[COMPS.RED] Renovation button clicked');
+        this.showRenovationCalculator();
       });
     }
     
@@ -259,13 +326,59 @@ class CompsRedSidePanel {
     }
   }
   handlePropertyData(propertyData) {
+    // Validate and clean property data
+    const cleanedData = this.validatePropertyData(propertyData);
+    if (!cleanedData) {
+      this.updateStatus('⚠️ Invalid property data - skipping this card');
+      return;
+    }
+    
     // Add property to deck
-    const card = this.currentDeck.addCard(propertyData);
+    const card = this.currentDeck.addCard(cleanedData);
     
     // Update UI
     this.addCardToUI(card);
     this.updateStats();
     this.updateStatus(`🎯 ${card.isMaster ? 'Primary card dealt!' : `${card.label} added to your hand!`}`);
+  }
+
+  validatePropertyData(data) {
+    if (!data || typeof data !== 'object') return null;
+    
+    // Ensure required fields exist with defaults
+    return {
+      zpid: data.zpid || 'unknown',
+      address: data.address || 'Address not available',
+      city: data.city || '',
+      state: data.state || '',
+      zipcode: data.zipcode || '',
+      
+      price: Math.max(0, parseInt(data.price) || 0),
+      beds: Math.max(0, parseInt(data.beds) || 0),
+      baths: Math.max(0, parseFloat(data.baths) || 0),
+      sqft: Math.max(1, parseInt(data.sqft) || parseInt(data.livingArea) || 1), // Prevent division by zero
+      lotSize: Math.max(0, parseInt(data.lotSize) || 0),
+      yearBuilt: parseInt(data.yearBuilt) || new Date().getFullYear(),
+      
+      propertyType: data.propertyType || data.homeType || 'Unknown',
+      listingStatus: data.listingStatus || data.homeStatus || 'Unknown',
+      daysOnMarket: Math.max(0, parseInt(data.daysOnMarket) || parseInt(data.daysOnZillow) || 0),
+      
+      images: Array.isArray(data.images) ? data.images : [],
+      
+      // Additional data with defaults
+      zestimate: Math.max(0, parseInt(data.zestimate) || 0),
+      rentZestimate: Math.max(0, parseInt(data.rentZestimate) || 0),
+      monthlyHoaFee: Math.max(0, parseInt(data.monthlyHoaFee) || 0),
+      propertyTaxRate: Math.max(0, parseFloat(data.propertyTaxRate) || 0),
+      
+      // Schools with safe defaults
+      schools: {
+        elementary: data.schools?.elementary || data.elementarySchool || 'Not available',
+        middle: data.schools?.middle || data.middleSchool || 'Not available',
+        high: data.schools?.high || data.highSchool || 'Not available'
+      }
+    };
   }
 
   addCardToUI(card) {
@@ -319,7 +432,7 @@ class CompsRedSidePanel {
           
           <div class="price-info">
             <span class="price">$${data.price.toLocaleString()}</span>
-            <span class="price-per-sqft">$${data.pricePerSqft}/sqft</span>
+            <span class="price-per-sqft">$${Math.round(data.price / data.sqft)}/sqft</span>
             ${priceDiffHtml}
           </div>
           
@@ -430,6 +543,56 @@ class CompsRedSidePanel {
     chrome.tabs.create({ url: viewerUrl });
   }
 
+  showRenovationCalculator() {
+    console.log('[COMPS.RED] Opening renovation calculator');
+    
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'renovation-modal';
+    modal.innerHTML = `
+      <div class="modal-overlay">
+        <div class="modal-container">
+          <div class="modal-header">
+            <h2>🔨 Renovation Calculator</h2>
+            <button class="modal-close-btn" id="closeRenovationModal">×</button>
+          </div>
+          <div class="modal-body">
+            ${this.renovationUI.createCalculatorHTML()}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Attach event listeners
+    this.renovationUI.attachEventListeners();
+    
+    // Close modal functionality
+    const closeBtn = document.getElementById('closeRenovationModal');
+    const overlay = modal.querySelector('.modal-overlay');
+    
+    const closeModal = () => {
+      modal.remove();
+    };
+    
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    
+    // ESC key to close
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    this.updateStatus('🔨 Renovation calculator opened!');
+  }
+
   showExportOptions() {
     console.log('[COMPS.RED] showExportOptions called');
     
@@ -503,6 +666,255 @@ class CompsRedSidePanel {
     // Close modal
     document.querySelector('.export-modal')?.remove();
     this.updateStatus(`💰 Cashed out your deck as ${format.toUpperCase()}!`);
+  }
+
+  showRenovationCalculator() {
+    console.log('[COMPS.RED] Opening renovation calculator');
+    
+    // Create modal for renovation calculator
+    const modal = document.createElement('div');
+    modal.className = 'renovation-modal';
+    modal.innerHTML = `
+      <div class="modal-content renovation-modal-content">
+        <button class="modal-close" onclick="this.closest('.renovation-modal').remove()">✖</button>
+        ${this.renovationUI.createCalculatorHTML()}
+      </div>
+    `;
+    
+    // Add modal styles if not already present
+    if (!document.querySelector('#renovation-modal-styles')) {
+      const styles = document.createElement('style');
+      styles.id = 'renovation-modal-styles';
+      styles.textContent = `
+        .renovation-modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+          overflow-y: auto;
+        }
+        
+        .renovation-modal-content {
+          background: #1a1a1a;
+          padding: 30px;
+          border-radius: 12px;
+          max-width: 800px;
+          width: 90%;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+        }
+        
+        .renovation-calculator h2 {
+          color: #DC2626;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+        
+        .calc-subtitle {
+          color: #999;
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+        
+        .property-basics, .renovation-scope, .results-section {
+          background: #252525;
+          padding: 20px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+        }
+        
+        .property-basics h3, .renovation-scope h3, .results-section h3 {
+          color: #fff;
+          font-size: 18px;
+          margin-bottom: 15px;
+        }
+        
+        .scope-section {
+          margin-bottom: 20px;
+          padding: 15px;
+          background: #1a1a1a;
+          border-radius: 6px;
+        }
+        
+        .scope-section h4 {
+          color: #DC2626;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+        
+        .input-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        
+        .input-row label {
+          color: #ccc;
+          flex: 1;
+        }
+        
+        .input-row input {
+          width: 150px;
+          padding: 8px;
+          background: #1a1a1a;
+          border: 1px solid #444;
+          color: #fff;
+          border-radius: 4px;
+        }
+        
+        select {
+          width: 100%;
+          padding: 10px;
+          background: #1a1a1a;
+          border: 1px solid #444;
+          color: #fff;
+          border-radius: 4px;
+        }
+        
+        .checkbox-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        
+        .checkbox-group label {
+          color: #ccc;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        
+        .calculate-btn {
+          width: 100%;
+          padding: 15px;
+          background: #DC2626;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+        
+        .calculate-btn:hover {
+          background: #b91c1c;
+        }
+        
+        .breakdown-items, .investment-items, .seventy-items {
+          padding: 15px;
+          background: #1a1a1a;
+          border-radius: 6px;
+        }
+        
+        .breakdown-item, .invest-item, .seventy-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 8px 0;
+          border-bottom: 1px solid #333;
+        }
+        
+        .breakdown-item.total, .invest-item.total, .seventy-item.total {
+          font-weight: bold;
+          font-size: 18px;
+          color: #DC2626;
+          border-top: 2px solid #DC2626;
+          margin-top: 10px;
+          padding-top: 10px;
+        }
+        
+        .breakdown-item.subtotal {
+          font-weight: bold;
+          color: #fff;
+        }
+        
+        .invest-item.highlight {
+          background: #2a2a2a;
+          padding: 10px;
+          border-radius: 4px;
+          border: 1px solid #DC2626;
+        }
+        
+        .summary-cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          margin-top: 20px;
+        }
+        
+        .summary-card {
+          background: #252525;
+          padding: 20px;
+          border-radius: 8px;
+        }
+        
+        .summary-card h4 {
+          color: #DC2626;
+          margin-bottom: 15px;
+        }
+        
+        .good-deal {
+          background: #1a3a1a;
+        }
+        
+        .bad-deal {
+          background: #3a1a1a;
+        }
+        
+        .export-btn {
+          width: 100%;
+          padding: 12px;
+          background: #059669;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+        
+        .export-btn:hover {
+          background: #047857;
+        }
+      `;
+      document.head.appendChild(styles);
+    }
+    
+    document.body.appendChild(modal);
+    
+    // Attach event listeners for the renovation calculator
+    this.renovationUI.attachEventListeners();
+    
+    // Auto-populate if we have property data
+    if (this.currentDeck && this.currentDeck.cards.length > 0) {
+      const primaryCard = this.currentDeck.cards[0];
+      if (primaryCard && primaryCard.data) {
+        const sqftInput = document.getElementById('reno-sqft');
+        const priceInput = document.getElementById('purchase-price');
+        
+        if (sqftInput && primaryCard.data.livingArea) {
+          sqftInput.value = primaryCard.data.livingArea;
+        }
+        if (priceInput && primaryCard.data.price) {
+          priceInput.value = primaryCard.data.price;
+        }
+        
+        // Set bathroom count if available
+        const bathroomInput = document.getElementById('bathroom-count');
+        if (bathroomInput && primaryCard.data.bathrooms) {
+          bathroomInput.value = primaryCard.data.bathrooms;
+        }
+      }
+    }
   }
 
   async clearDeck() {

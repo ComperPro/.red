@@ -1,0 +1,7 @@
+# Redirects for single page application
+/*    /index.html   200
+
+# Extension download redirect
+/extension    https://chrome.google.com/webstore/detail/comps-red    301!
+/install      https://chrome.google.com/webstore/detail/comps-red    301!
+/download     https://chrome.google.com/webstore/detail/comps-red    301!

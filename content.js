@@ -80,7 +80,21 @@ function extractPropertyData() {
         elementary: propertyData.elementarySchool,
         middle: propertyData.middleSchool,
         high: propertyData.highSchool
-      }
+      },
+      
+      // Renovation-specific data
+      basement: propertyData.basement,
+      hasGarage: propertyData.hasGarage || propertyData.parkingFeatures?.includes('Garage'),
+      cooling: propertyData.cooling,
+      heating: propertyData.heating,
+      appliances: propertyData.appliances,
+      flooring: propertyData.flooring,
+      exteriorFeatures: propertyData.exteriorFeatures,
+      roofType: propertyData.roofType,
+      foundation: propertyData.foundation,
+      architecturalStyle: propertyData.architecturalStyle,
+      condition: propertyData.condition,
+      listingSubType: propertyData.listingSubType
     };
     
     console.log('[COMPS.RED] Extracted property:', extracted.address);

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://comper.pro/sitemap.xml

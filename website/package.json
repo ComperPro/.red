@@ -1,0 +1,44 @@
+{
+  "name": "comps-red-website",
+  "version": "1.0.0",
+  "description": "COMPS.RED - Professional Property Comparison Tool",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s . -p 3000",
+    "build": "npm run optimize",
+    "optimize": "npm run optimize:html && npm run optimize:css && npm run optimize:js && npm run optimize:images",
+    "optimize:html": "npx html-minifier-terser index.html -o dist/index.html --collapse-whitespace --remove-comments --minify-css --minify-js",
+    "optimize:css": "npx cssnano styles.css dist/styles.css",
+    "optimize:js": "npx terser app.js -o dist/app.js --compress --mangle",
+    "optimize:images": "npx imagemin images/* --out-dir=dist/images",
+    "serve": "npx http-server dist -p 8080",
+    "deploy": "npm run build && npx surge dist comps-red.surge.sh",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=dist",
+    "test": "npx lighthouse http://localhost:3000 --view"
+  },
+  "keywords": [
+    "real estate",
+    "chrome extension",
+    "property analysis",
+    "comps",
+    "zillow"
+  ],
+  "author": "COMPS.RED",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0",
+    "html-minifier-terser": "^7.2.0",
+    "cssnano": "^6.0.1",
+    "cssnano-cli": "^1.0.5",
+    "terser": "^5.24.0",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-mozjpeg": "^10.0.0",
+    "http-server": "^14.1.1",
+    "surge": "^0.23.1",
+    "lighthouse": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

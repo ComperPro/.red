@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COMPS.RED - Revolutionary Chrome extension for real estate analysis. Professional comparable analysis for Zillow properties.">
+    <meta name="keywords" content="real estate, comps, zillow, property analysis, chrome extension, flip calculator">
+    <meta property="og:title" content="COMPS.RED - Deal Your Best Hand in Real Estate">
+    <meta property="og:description" content="Professional comparable analysis Chrome extension for Zillow properties">
+    <meta property="og:image" content="https://comps.red/og-image.png">
+    <meta property="og:url" content="https://comps.red">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>COMPS.RED - Professional Property Comparison Tool</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logo.svg" alt="COMPS.RED" class="logo">
+                <span class="brand-name">COMPS.RED</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#install" class="btn-nav">Install Extension</a>
+            </div>
+            <button class="mobile-menu" id="mobileMenu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Deal Your Best Hand in Real Estate</h1>
+                <p class="hero-subtitle">Professional comparable analysis for Zillow properties. Build your comp deck instantly with our Chrome extension.</p>
+                <div class="hero-actions">
+                    <a href="#install" class="btn btn-primary">Get Started Free</a>
+                    <a href="#demo" class="btn btn-secondary">Watch Demo</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Flips Analyzed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$1M+</span>
+                        <span class="stat-label">Commissions Saved</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5 sec</span>
+                        <span class="stat-label">Analysis Time</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="hero-mockup.png" alt="COMPS.RED Extension Preview" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Revolutionary Features</h2>
+            <p class="section-subtitle">Everything you need to analyze deals like a pro</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Revolutionary Scoring</h3>
+                    <p>Advanced algorithm scores properties based on 15+ factors including price/sqft, days on market, and neighborhood trends.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔨</div>
+                    <h3>Renovation Calculator</h3>
+                    <p>Real-world pricing from 250+ flips. Kitchen, bathroom, flooring, and full gut estimates with 70% rule analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎴</div>
+                    <h3>Comp Deck Builder</h3>
+                    <p>Build professional comparable analysis decks instantly. Export to CSV, JSON, or PDF for presentations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Twin Finder</h3>
+                    <p>Find identical properties in the neighborhood. Match by beds, baths, sqft, and year built automatically.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>ARV Calculator</h3>
+                    <p>Calculate After Repair Value with profit margins. Includes holding costs, selling costs, and ROI analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Truth Export</h3>
+                    <p>Export raw data without MLS gatekeeping. Get the real numbers for your analysis and presentations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2 class="section-title">See It In Action</h2>
+            <div class="demo-video">
+                <video controls poster="demo-poster.jpg">
+                    <source src="demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <p class="section-subtitle">No commissions. No gatekeepers. Just tools.</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <ul class="pricing-features">
+                        <li>✓ 10 analyses per day</li>
+                        <li>✓ Basic scoring algorithm</li>
+                        <li>✓ CSV export</li>
+                        <li>✓ Renovation calculator</li>
+                    </ul>
+                    <a href="#install" class="btn btn-secondary">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$19<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>✓ Unlimited analyses</li>
+                        <li>✓ Advanced scoring</li>
+                        <li>✓ All export formats</li>
+                        <li>✓ Twin finder</li>
+                        <li>✓ Street View integration</li>
+                        <li>✓ Priority support</li>
+                    </ul>
+                    <a href="#install" class="btn btn-primary">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Team</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>✓ Everything in Pro</li>
+                        <li>✓ 5 team members</li>
+                        <li>✓ API access</li>
+                        <li>✓ Custom branding</li>
+                        <li>✓ Dedicated support</li>
+                    </ul>
+                    <a href="#install" class="btn btn-secondary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="install">
+        <div class="container">
+            <h2 class="section-title">Install in 30 Seconds</h2>
+            <div class="install-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Add to Chrome</h3>
+                    <p>Click the button below to add COMPS.RED to your Chrome browser</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Visit Zillow</h3>
+                    <p>Navigate to any Zillow property listing page</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Analyzing</h3>
+                    <p>Click the COMPS.RED icon to open the analysis panel</p>
+                </div>
+            </div>
+            <div class="install-action">
+                <a href="https://chrome.google.com/webstore/detail/comps-red" class="btn btn-primary btn-large">
+                    Add to Chrome - It's Free
+                </a>
+                <p class="install-note">Works with Chrome, Edge, and Brave browsers</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.svg" alt="COMPS.RED" class="logo">
+                    <p>Democratizing real estate data, one property at a time.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#install">Install</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="/about">About</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/cookies">Cookies</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 COMPS.RED. All rights reserved.</p>
+                <p>Built by flippers, for flippers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
