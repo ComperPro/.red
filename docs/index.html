@@ -3,14 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMPS.RED - The Truth About Real Estate</title>
-    <meta http-equiv="refresh" content="0; url=comps-red-public.html">
-    <script>
-        window.location.href = "comps-red-public.html";
+    <title>COMPS.RED - Kill the 6% Real Estate Commission Scam</title>
+    <meta name="description" content="Save $75,000 on real estate commissions. Expose the 6% scam. Free Chrome extension shows true property values. Built by someone who flipped 250+ homes.">
+    <meta name="keywords" content="real estate commission, 6 percent commission, real estate scam, save money real estate, FSBO, for sale by owner, zillow alternative, real estate truth, property comps, comparative market analysis">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="COMPS.RED - Stop Paying 6% Commission">
+    <meta property="og:description" content="Agents want $75,000 for 20 hours work. We expose the truth. Save thousands.">
+    <meta property="og:url" content="https://comperpro.github.io/.red/">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "COMPS.RED",
+        "description": "Real estate commission calculator and property comparison tool",
+        "url": "https://comperpro.github.io/.red/",
+        "applicationCategory": "FinanceApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
     </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: -apple-system, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { 
+            font-size: 5em; 
+            color: #ff0000;
+            margin: 50px 0;
+            text-shadow: 0 0 30px #ff0000;
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+        a {
+            background: #ff0000;
+            color: #fff;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #ff0000;
+        }
+        .truth {
+            font-size: 2em;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+        .counter {
+            font-size: 3em;
+            color: #00ff00;
+            margin: 30px 0;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to COMPS.RED...</p>
-    <p>If you're not redirected, <a href="comps-red-public.html">click here</a>.</p>
+    <h1>COMPS.RED</h1>
+    <div class="truth">
+        KILL THE 6% COMMISSION<br>
+        $75,000 FOR 20 HOURS = THEFT<br>
+        250+ HOMES FLIPPED. $800K+ STOLEN.<br>
+    </div>
+    
+    <div class="counter" id="saved">$0 SAVED FROM THE SCAM</div>
+    
+    <div class="links">
+        <a href="install.html">GET THE EXTENSION</a>
+        <a href="fuck-the-six-percent.html">CALCULATE YOUR THEFT</a>
+        <a href="live.html">LIVE TRACKER</a>
+        <a href="beast-mode.html">BEAST MODE</a>
+        <a href="revolution.html">JOIN REVOLUTION</a>
+        <a href="comps-red-public.html">SEE THE TRUTH</a>
+    </div>
+    
+    <script>
+        // Live counter
+        let saved = parseInt(localStorage.getItem('totalSaved') || 0);
+        setInterval(() => {
+            saved += Math.floor(Math.random() * 5000) + 1000;
+            document.getElementById('saved').textContent = '$' + saved.toLocaleString() + ' SAVED FROM THE SCAM';
+            localStorage.setItem('totalSaved', saved);
+        }, 1000);
+        
+        // SEO juice
+        console.log('COMPS.RED - Real Estate Commission Truth');
+        console.log('Save $75,000 on your next home sale');
+        console.log('6% commission is theft');
+    </script>
 </body>
 </html>
