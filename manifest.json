@@ -7,7 +7,9 @@
     "storage",
     "tabs",
     "sidePanel",
-    "downloads"
+    "downloads",
+    "scripting",
+    "activeTab"
   ],
   "host_permissions": [
     "https://www.zillow.com/*",

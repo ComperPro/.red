@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Estate Commission Calculator - How Much Are You Losing to 6%?</title>
+    <meta name="description" content="Calculate exactly how much money you're losing to the 6% real estate commission scam. Free tool shows the truth about agent fees.">
+    <meta name="keywords" content="real estate commission calculator, 6% commission, real estate fees, agent commission, fsbo calculator">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "COMPS.RED Commission Calculator",
+      "url": "https://comperpro.github.io/.red/",
+      "description": "Expose the 6% real estate commission scam. Calculate your losses.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Real Estate Truth Teller",
+        "description": "250+ homes flipped, $800k+ in commissions paid"
+      }
+    }
+    </script>
+</head>
+<body>
+    <h1>The 6% Commission Truth Calculator</h1>
+    
+    <div id="calculator">
+        <label>Property Price: $<input type="number" id="price" value="500000"></label>
+        <div id="results">
+            <h2>You're Losing: $<span id="commission">30,000</span></h2>
+            <p>For about 20 hours of work</p>
+            <p>That's $<span id="hourly">1,500</span> per hour</p>
+        </div>
+    </div>
+    
+    <h2>The Truth About Real Estate Commissions</h2>
+    <p>Agents want 6% for:</p>
+    <ul>
+        <li>Taking photos with their iPhone</li>
+        <li>Putting a sign in the yard</li>
+        <li>Listing on MLS (monopoly database)</li>
+        <li>Maybe 20 hours of actual work</li>
+    </ul>
+    
+    <h2>What You Can Do Instead</h2>
+    <ul>
+        <li>Use COMPS.RED to find true property values</li>
+        <li>List FSBO (For Sale By Owner)</li>
+        <li>Hire a photographer for $500</li>
+        <li>Use flat-fee MLS service for $500</li>
+        <li>Keep the other $29,000</li>
+    </ul>
+    
+    <a href="install.html">Get COMPS.RED Free Chrome Extension</a>
+    
+    <script>
+    document.getElementById('price').addEventListener('input', (e) => {
+        const price = parseInt(e.target.value) || 0;
+        const commission = price * 0.06;
+        const hourly = commission / 20;
+        document.getElementById('commission').textContent = commission.toLocaleString();
+        document.getElementById('hourly').textContent = hourly.toLocaleString();
+    });
+    </script>
+    
+    <!-- Hidden content for SEO -->
+    <div style="display:none">
+        <h3>Real Estate Commission Scam Exposed</h3>
+        <p>Stop paying 6% commission. Real estate agents commission rates are too high. 
+        Save money on real estate. FSBO tools. Zillow alternative. Real comps analysis.
+        Property comparison tool. Real estate truth. No BS real estate. Commission calculator.
+        How much do real estate agents make. Real estate agent fees too high. 6 percent commission.</p>
+    </div>
+</body>
+</html>

@@ -195,6 +195,12 @@ class CompsRedSidePanel {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       console.log('[COMPS.RED] Sending DRAW_CARDS message to tab:', tab?.id);
       
+      // Inject content script first if needed
+      await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ['content.js']
+      }).catch(() => console.log('Content script already injected'));
+      
       const response = await chrome.tabs.sendMessage(tab.id, { 
         type: "DRAW_CARDS",
         source: "COMPS.RED"
