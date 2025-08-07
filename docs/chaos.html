@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CHAOS MODE</title>
+<style>
+*{margin:0;padding:0;cursor:none}
+body{background:#000;overflow:hidden;font-family:Impact}
+#chaos{position:fixed;width:200%;height:200%;top:-50%;left:-50%;font-size:20vw;font-weight:900;color:#f00;display:flex;align-items:center;justify-content:center;animation:spin 2s linear infinite;text-shadow:0 0 100px #f00}
+@keyframes spin{to{transform:rotate(360deg)}}
+.explosion{position:fixed;pointer-events:none;animation:explode 1s forwards}
+@keyframes explode{to{transform:scale(50);opacity:0}}
+#cursor{position:fixed;width:50px;height:50px;border:3px solid #f00;border-radius:50%;pointer-events:none;z-index:9999;animation:pulse 0.5s infinite}
+@keyframes pulse{50%{transform:scale(1.5);border-color:#0f0}}
+.word{position:fixed;font-size:5em;font-weight:bold;animation:fly 3s linear}
+@keyframes fly{to{transform:translateX(200vw)}}
+#secret{position:fixed;bottom:10px;right:10px;color:#f00;font-size:2em;opacity:0.1}
+#secret:hover{opacity:1;animation:rainbow 1s infinite}
+@keyframes rainbow{0%{color:#f00}33%{color:#0f0}66%{color:#00f}100%{color:#f00}}
+</style>
+</head>
+<body>
+<div id="chaos">FUCK<br>THE<br>6%</div>
+<div id="cursor"></div>
+<div id="secret">you found it</div>
+<script>
+const words=['REVOLUTION','FREEDOM','TRUTH','$75,000','THEFT','SCAM','MONOPOLY','LIES','WAKE UP','250 HOMES','$800K','AMEN'];
+const colors=['#f00','#0f0','#00f','#ff0','#f0f','#0ff'];
+document.onmousemove=(e)=>{
+document.getElementById('cursor').style.left=e.clientX-25+'px';
+document.getElementById('cursor').style.top=e.clientY-25+'px';
+if(Math.random()>0.9){
+const exp=document.createElement('div');
+exp.className='explosion';
+exp.style.left=e.clientX+'px';
+exp.style.top=e.clientY+'px';
+exp.style.width='10px';
+exp.style.height='10px';
+exp.style.background=colors[Math.floor(Math.random()*colors.length)];
+exp.style.position='fixed';
+document.body.appendChild(exp);
+setTimeout(()=>exp.remove(),1000);
+}
+};
+setInterval(()=>{
+const word=document.createElement('div');
+word.className='word';
+word.textContent=words[Math.floor(Math.random()*words.length)];
+word.style.color=colors[Math.floor(Math.random()*colors.length)];
+word.style.top=Math.random()*window.innerHeight+'px';
+word.style.left='-300px';
+document.body.appendChild(word);
+setTimeout(()=>word.remove(),3000);
+},500);
+document.onclick=()=>{
+document.body.style.background=colors[Math.floor(Math.random()*colors.length)];
+setTimeout(()=>document.body.style.background='#000',100);
+const audio=new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUini');
+audio.play();
+};
+document.onkeypress=(e)=>{
+document.getElementById('chaos').textContent+=e.key.toUpperCase();
+};
+</script>
+</body>
+</html>
