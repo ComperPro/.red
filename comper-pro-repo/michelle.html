@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥊 KNOCKOUT MODE - For Michelle Who Boxes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(135deg, #000 0%, #ff0000 50%, #000 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .gloves {
+            position: fixed;
+            font-size: 200px;
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+        
+        .glove-left {
+            top: 10%;
+            left: -50px;
+            transform: rotate(-45deg);
+        }
+        
+        .glove-right {
+            bottom: 10%;
+            right: -50px;
+            transform: rotate(45deg);
+            animation-delay: 10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-30px) rotate(-45deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideDown 1s ease;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            text-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .tagline {
+            font-size: 24px;
+            color: #ffcc00;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: rgba(0,0,0,0.8);
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        
+        .stat-card:hover {
+            transform: perspective(1000px) rotateY(10deg) scale(1.05);
+            border-color: #ffcc00;
+            box-shadow: 0 20px 40px rgba(255,0,0,0.5);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            color: #ff0000;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #ffcc00;
+            text-transform: uppercase;
+        }
+        
+        .action-section {
+            text-align: center;
+            margin: 80px 0;
+        }
+        
+        .main-cta {
+            display: inline-block;
+            padding: 25px 60px;
+            font-size: 24px;
+            background: linear-gradient(45deg, #ff0000, #ff6600);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.5);
+            transition: all 0.3s ease;
+            animation: glow 2s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255,0,0,0.5); }
+            50% { box-shadow: 0 15px 40px rgba(255,0,0,0.8); }
+        }
+        
+        .main-cta:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(45deg, #ff6600, #ff0000);
+        }
+        
+        .features {
+            margin: 80px 0;
+        }
+        
+        .features h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffcc00;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature {
+            background: rgba(0,0,0,0.9);
+            border-left: 5px solid #ff0000;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateX(10px);
+            border-left-color: #ffcc00;
+            background: rgba(255,0,0,0.1);
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff6600;
+        }
+        
+        .feature p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        
+        .combo-moves {
+            background: rgba(0,0,0,0.8);
+            border: 3px solid #ffcc00;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .combo-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffcc00;
+        }
+        
+        .combos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .combo {
+            background: rgba(255,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .combo:hover {
+            background: rgba(255,0,0,0.4);
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .combo-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .combo-name {
+            font-size: 18px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 3px solid #ff0000;
+            margin-top: 100px;
+        }
+        
+        .footer-text {
+            font-size: 24px;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        
+        .knockout-count {
+            font-size: 36px;
+            color: #ff0000;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .install-btn {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 15px 40px;
+            background: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .install-btn:hover {
+            background: #ff6600;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 48px; }
+            .tagline { font-size: 18px; }
+            .stat-number { font-size: 36px; }
+            .main-cta { padding: 20px 40px; font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gloves glove-left">🥊</div>
+    <div class="gloves glove-right">🥊</div>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>🥊 KNOCKOUT MODE 🥊</h1>
+            <p class="tagline">For Michelle Who Boxes - Punch Through Overpriced Listings!</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">250+</span>
+                <span class="stat-label">Properties Knocked Out</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">$2.3M</span>
+                <span class="stat-label">Saved in Commissions</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">6%</span>
+                <span class="stat-label">The Racket We're Fighting</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Knockout Rate</span>
+            </div>
+        </div>
+        
+        <div class="action-section">
+            <a href="https://chrome.google.com/webstore/detail/comps-red" class="main-cta">
+                Activate Knockout Mode
+            </a>
+        </div>
+        
+        <div class="features">
+            <h2>Your Fighting Arsenal</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>🥊 JAB - Quick Analysis</h3>
+                    <p>Lightning-fast price checks that expose overpriced listings instantly. Your opening move to test the waters.</p>
+                </div>
+                <div class="feature">
+                    <h3>💥 CROSS - Deep Dive</h3>
+                    <p>Power analysis that compares against real comps. This is your money shot that reveals the truth.</p>
+                </div>
+                <div class="feature">
+                    <h3>🎯 HOOK - Find Weakness</h3>
+                    <p>Identifies property vulnerabilities - old systems, long market time, price drops. Go for the body!</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡ UPPERCUT - Kill Shot</h3>
+                    <p>The knockout blow. When a property is $50K+ overpriced, this finisher ends the fight.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 COMBO METER</h3>
+                    <p>Chain your moves together for maximum damage. Build your power level to 100% for the ultimate knockout!</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 FIGHTER STATS</h3>
+                    <p>Track your knockouts, win streaks, and power level. Become the undisputed champion of real estate!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="combo-moves">
+            <h3 class="combo-title">Special Combo Moves</h3>
+            <div class="combos">
+                <div class="combo">
+                    <span class="combo-icon">👊</span>
+                    <span class="combo-name">Jab-Cross</span>
+                </div>
+                <div class="combo">
+                    <span class="combo-icon">💪</span>
+                    <span class="combo-name">Body Shot</span>
+                </div>
+                <div class="combo">
+                    <span class="combo-icon">🔥</span>
+                    <span class="combo-name">Haymaker</span>
+                </div>
+                <div class="combo">
+                    <span class="combo-icon">⚡</span>
+                    <span class="combo-name">Lightning Strike</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-section">
+            <h2 style="color: #ffcc00; margin-bottom: 30px;">Ready to Fight?</h2>
+            <a href="https://chrome.google.com/webstore/detail/comps-red" class="install-btn">
+                Install Chrome Extension
+            </a>
+            <a href="https://preeminent-treacle-9c2292.netlify.app" class="install-btn">
+                View Live Demo
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">BUILT FOR FIGHTERS, BY FIGHTERS</p>
+            <p class="knockout-count">Total Knockouts Today: 437</p>
+            <p style="margin-top: 20px; color: #888;">
+                Made with 🥊 for Michelle<br>
+                Because overpriced listings deserve to get knocked out
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Animated counter
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+        
+        // Animate knockout count
+        window.addEventListener('load', () => {
+            const knockoutCount = document.querySelector('.knockout-count');
+            if (knockoutCount) {
+                animateCounter(knockoutCount, 437);
+            }
+        });
+        
+        // Add punch effect on click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('stat-card')) {
+                e.target.style.animation = 'punch 0.5s ease';
+                setTimeout(() => {
+                    e.target.style.animation = '';
+                }, 500);
+            }
+        });
+        
+        // Add punch animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes punch {
+                0% { transform: scale(1) rotate(0); }
+                25% { transform: scale(0.9) rotate(-5deg); }
+                50% { transform: scale(1.2) rotate(5deg); }
+                100% { transform: scale(1) rotate(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
