@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Share Your Savings - COMPS.RED</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#000;color:#fff;font:bold 1.5em/1.5 Arial;text-align:center;padding:20px;margin:0}
+h1{color:#f00;font-size:3em;text-shadow:0 0 30px #f00}
+input{width:90%;max-width:400px;padding:20px;font-size:2em;background:#111;border:3px solid #f00;color:#fff;border-radius:10px;margin:20px 0}
+#result{font-size:3em;color:#0f0;margin:30px 0;min-height:100px}
+.share-btn{display:inline-block;padding:20px 40px;margin:10px;background:#fff;color:#000;text-decoration:none;font-size:1.2em;border-radius:50px;font-weight:900}
+.reddit{background:#FF4500;color:#fff}
+.twitter{background:#1DA1F2;color:#fff}
+.facebook{background:#1877F2;color:#fff}
+.copy{background:#f00;color:#fff}
+#message{background:#111;padding:20px;border-radius:10px;margin:20px auto;max-width:600px;border:2px solid #f00}
+</style>
+</head>
+<body>
+<h1>CALCULATE YOUR THEFT</h1>
+<input type="number" id="price" placeholder="Enter property price" value="500000">
+<div id="result"></div>
+<div id="message"></div>
+<div id="shareButtons" style="display:none">
+<a href="#" class="share-btn reddit" onclick="shareReddit()">REDDIT</a>
+<a href="#" class="share-btn twitter" onclick="shareTwitter()">TWITTER</a>
+<a href="#" class="share-btn facebook" onclick="shareFB()">FACEBOOK</a>
+<a href="#" class="share-btn copy" onclick="copyText()">COPY TEXT</a>
+</div>
+
+<script>
+let commission = 30000;
+let shareText = '';
+
+document.getElementById('price').addEventListener('input', (e) => {
+const price = parseInt(e.target.value) || 0;
+commission = price * 0.06;
+document.getElementById('result').innerHTML = `THEY WANT TO STEAL<br>$${commission.toLocaleString()}`;
+document.getElementById('message').innerHTML = `
+<strong>Your personalized message:</strong><br><br>
+"Real estate agents want $${commission.toLocaleString()} commission to sell my $${price.toLocaleString()} property. 
+That's 6% for maybe 20 hours of work - $${Math.floor(commission/20).toLocaleString()}/hour!<br><br>
+I just found COMPS.RED - exposes the truth about real estate commissions. 
+Built by someone who flipped 250+ homes and paid $800k+ in commissions.<br><br>
+Check it out: https://comperpro.github.io/.red/"
+`;
+shareText = `Real estate agents want $${commission.toLocaleString()} to sell my property. That's $${Math.floor(commission/20).toLocaleString()}/hour for 20 hours of work! Found this tool that exposes the 6% scam: https://comperpro.github.io/.red/`;
+document.getElementById('shareButtons').style.display = 'block';
+});
+
+function shareReddit() {
+const title = `I'm about to save $${commission.toLocaleString()} in real estate commissions`;
+const url = `https://www.reddit.com/submit?title=${encodeURIComponent(title)}&text=${encodeURIComponent(shareText)}`;
+window.open(url, '_blank');
+}
+
+function shareTwitter() {
+const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+window.open(url, '_blank');
+}
+
+function shareFB() {
+const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://comperpro.github.io/.red/')}&quote=${encodeURIComponent(shareText)}`;
+window.open(url, '_blank');
+}
+
+function copyText() {
+navigator.clipboard.writeText(shareText);
+alert('Copied! Paste anywhere to share the truth!');
+}
+
+// Auto-calculate on load
+document.getElementById('price').dispatchEvent(new Event('input'));
+</script>
+
+<div style="margin-top:50px;padding:20px;background:#111;border-radius:10px">
+<h2 style="color:#f00">WHERE TO POST FOR MAXIMUM IMPACT:</h2>
+<p>r/RealEstate - 2.5M members</p>
+<p>r/FirstTimeHomeBuyers - 500K members</p>
+<p>r/REBubble - 250K members</p>
+<p>r/FlippingHouses - 100K members</p>
+<p>BiggerPockets Forums - 2M+ investors</p>
+<p>Facebook Real Estate Groups</p>
+<p>TikTok with #realestate #commission #fsbo</p>
+</div>
+</body>
+</html>
