@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEAST MODE ACTIVATED</title>
+<style>
+*{margin:0;padding:0}
+body{background:#000;color:#f00;font-family:Impact,sans-serif;overflow:hidden;cursor:crosshair}
+#beast{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.rage{font-size:15vw;font-weight:900;text-shadow:0 0 50px #f00,0 0 100px #f00;animation:rage 0.1s infinite;text-align:center;line-height:0.8}
+@keyframes rage{0%{transform:scale(1)rotate(0)}50%{transform:scale(1.2)rotate(-5deg)}100%{transform:scale(1)rotate(5deg)}}
+.stats{position:fixed;top:20px;left:20px;font-size:2em;text-shadow:0 0 10px #f00}
+.counter{font-size:5em;color:#0f0;text-shadow:0 0 30px #0f0}
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.particle{position:absolute;color:#f00;font-size:3em;animation:explode 2s ease-out forwards}
+@keyframes explode{to{transform:translateY(-100vh)rotate(720deg);opacity:0}}
+.truth{position:fixed;bottom:20px;width:100%;text-align:center;font-size:3em;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.1)}}
+#power{position:fixed;top:50%;right:20px;transform:translateY(-50%);font-size:8em;animation:lightning 0.2s infinite}
+@keyframes lightning{0%,100%{opacity:1}50%{opacity:0.3}}
+</style>
+</head>
+<body>
+<div id="beast">
+<div class="rage">FUCK<br>THE<br>6%</div>
+<div class="counter" id="counter">$0</div>
+<div class="stats">
+<div>HOMES FLIPPED: 250+</div>
+<div>COMMISSIONS PAID: $800K+</div>
+<div>FAMILIES FREED: <span id="freed">0</span></div>
+</div>
+</div>
+<div class="truth">CLICK ANYWHERE TO DESTROY THE MONOPOLY</div>
+<div id="power">⚡</div>
+<div id="particles"></div>
+<script>
+let saved=0,freed=0;
+setInterval(()=>{
+saved+=Math.floor(Math.random()*10000)+5000;
+freed=Math.floor(saved/75000);
+document.getElementById('counter').textContent='$'+saved.toLocaleString()+' SAVED';
+document.getElementById('freed').textContent=freed.toLocaleString();
+if(Math.random()>0.5){
+const p=document.createElement('div');
+p.className='particle';
+p.textContent=['💰','🔥','💀','💥','🖕'][Math.floor(Math.random()*5)];
+p.style.left=Math.random()*window.innerWidth+'px';
+p.style.bottom='0';
+document.getElementById('particles').appendChild(p);
+setTimeout(()=>p.remove(),2000);
+}
+},100);
+document.onclick=()=>{
+const boom=document.createElement('div');
+boom.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:#f00;z-index:9999';
+document.body.appendChild(boom);
+setTimeout(()=>{window.location='https://comperpro.github.io/.red/'},200);
+};
+</script>
+</body>
+</html>

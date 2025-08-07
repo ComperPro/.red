@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JOIN THE REVOLUTION</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(45deg,#000,#f00,#000);background-size:400% 400%;animation:burn 3s infinite;color:#fff;font:bold 2em/1.5 Arial;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+@keyframes burn{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+h1{font-size:5em;text-shadow:0 0 50px #f00;animation:slam 0.5s}
+@keyframes slam{from{transform:scale(10);opacity:0}to{transform:scale(1);opacity:1}}
+.manifesto{max-width:90%;margin:40px auto;font-size:1.2em;line-height:1.8;text-shadow:2px 2px 4px #000}
+.join{display:inline-block;padding:30px 60px;background:#fff;color:#f00;font-size:2em;text-decoration:none;margin:20px;border-radius:50px;animation:throb 1s infinite;font-weight:900}
+@keyframes throb{50%{transform:scale(1.1);box-shadow:0 0 40px #fff}}
+.count{position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.8);padding:20px;border-radius:10px;border:2px solid #f00}
+#warriors{font-size:3em;color:#0f0}
+.truth-bombs{position:fixed;bottom:0;width:100%;background:rgba(0,0,0,0.9);padding:20px;border-top:3px solid #f00}
+.bomb{display:inline-block;margin:10px;animation:float 3s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+</style>
+</head>
+<body>
+<div class="count">
+<div>WARRIORS JOINED:</div>
+<div id="warriors">0</div>
+</div>
+<h1>THE REVOLUTION</h1>
+<div class="manifesto">
+250+ HOMES FLIPPED<br>
+$800,000+ IN COMMISSIONS STOLEN<br>
+20 HOURS OF WORK FOR $75,000<br>
+<br>
+ENOUGH.<br>
+<br>
+NO MORE 6% RACKET<br>
+NO MORE MLS MONOPOLY<br>
+NO MORE GATEKEEPERS<br>
+<br>
+WE HAVE THE TRUTH<br>
+WE HAVE THE TOOLS<br>
+WE HAVE THE POWER<br>
+</div>
+<a href="https://comperpro.github.io/.red/" class="join">JOIN NOW</a>
+<a href="https://comperpro.github.io/.red/install.html" class="join">ARM YOURSELF</a>
+<div class="truth-bombs">
+<span class="bomb">🔥 BURN THE 6%</span>
+<span class="bomb">💀 KILL THE MONOPOLY</span>
+<span class="bomb">⚡ POWER TO PEOPLE</span>
+<span class="bomb">🎴 PULL YOUR CARDS</span>
+<span class="bomb">💰 KEEP YOUR MONEY</span>
+</div>
+<script>
+let warriors=Math.floor(Math.random()*1000)+500;
+setInterval(()=>{
+warriors+=Math.floor(Math.random()*5)+1;
+document.getElementById('warriors').textContent=warriors.toLocaleString();
+},2000);
+document.body.onclick=()=>{
+document.body.style.background='#f00';
+setTimeout(()=>window.location='https://comperpro.github.io/.red/',500);
+};
+</script>
+</body>
+</html>
