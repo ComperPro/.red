@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Just Breathe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, sans-serif;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .message {
+            font-size: 1.5em;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        .breathe {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            margin: 50px auto;
+            animation: breathe 4s ease-in-out infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+        
+        .love {
+            margin-top: 40px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey Family</h1>
+        
+        <div class="breathe"></div>
+        
+        <div class="message">
+            <p>Sometimes we all need to slow down.</p>
+            <p>Take a breath.</p>
+            <p>Remember what matters.</p>
+            <p>You matter. This family matters.</p>
+            <p>Everything else is just noise.</p>
+        </div>
+        
+        <div class="love">
+            <p>❤️</p>
+            <p>Love you all</p>
+            <p>Let's just be together</p>
+        </div>
+    </div>
+</body>
+</html>
