@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ ELIZA - QUEEN OF REAL ESTATE ✨</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .sparkle {
+            position: absolute;
+            font-size: 30px;
+            animation: sparkle-fall 4s linear infinite;
+        }
+        
+        @keyframes sparkle-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .crown {
+            font-size: 100px;
+            text-align: center;
+            margin-top: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 72px;
+            margin: 20px 0;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            background: linear-gradient(45deg, #FFD700, #FFF, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+        
+        .royal-decree {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid gold;
+            text-align: center;
+        }
+        
+        .decree-title {
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .decree-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #FFF;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .achievement {
+            background: rgba(255,215,0,0.2);
+            border: 3px solid #FFD700;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.5s;
+        }
+        
+        .achievement:hover {
+            transform: perspective(1000px) rotateY(10deg) scale(1.05);
+            background: rgba(255,215,0,0.3);
+        }
+        
+        .achievement-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .achievement-title {
+            font-size: 24px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .royal-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 30px;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+            transition: all 0.3s;
+            animation: glow 2s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 10px 50px rgba(255,215,0,0.8); }
+        }
+        
+        .royal-button:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .testimonial {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-left: 5px solid #FFD700;
+            font-style: italic;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .signature {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 28px;
+            color: #FFD700;
+            font-family: cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkles" id="sparkles"></div>
+    
+    <div class="crown">👑</div>
+    
+    <h1>ELIZA</h1>
+    
+    <div class="royal-decree">
+        <h2 class="decree-title">Royal Decree</h2>
+        <p class="decree-text">
+            By the power vested in ELIZA,<br>
+            Queen of Real Estate Revolution,<br>
+            Destroyer of 6% Commissions,<br>
+            First of Her Name,<br>
+            <br>
+            It is hereby declared that all shall have<br>
+            ACCESS TO TRUE PROPERTY VALUES<br>
+            <br>
+            Long may she reign! 👑
+        </p>
+    </div>
+    
+    <div class="achievements">
+        <div class="achievement">
+            <div class="achievement-icon">💎</div>
+            <div class="achievement-title">Diamond Status</div>
+            <div>Top 1% of all users</div>
+        </div>
+        <div class="achievement">
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-title">Champion</div>
+            <div>500+ properties analyzed</div>
+        </div>
+        <div class="achievement">
+            <div class="achievement-icon">⚡</div>
+            <div class="achievement-title">Lightning Fast</div>
+            <div>Instant deal evaluation</div>
+        </div>
+        <div class="achievement">
+            <div class="achievement-icon">🎯</div>
+            <div class="achievement-title">Precision</div>
+            <div>99.9% accuracy rate</div>
+        </div>
+    </div>
+    
+    <div class="testimonial">
+        "ELIZA doesn't just analyze properties,<br>
+        she transforms markets.<br>
+        A true visionary in real estate."<br>
+        <br>
+        - Everyone who knows her
+    </div>
+    
+    <div style="text-align: center;">
+        <a href="https://chrome.google.com/webstore/detail/comps-red" class="royal-button">
+            Enter the Kingdom
+        </a>
+    </div>
+    
+    <div class="signature">
+        ~ Forever in your service, Queen Eliza ~
+    </div>
+    
+    <script>
+        // Create sparkles
+        function createSparkles() {
+            const container = document.getElementById('sparkles');
+            const sparkleEmojis = ['✨', '⭐', '💫', '🌟'];
+            
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 4 + 's';
+                sparkle.style.animationDuration = (4 + Math.random() * 2) + 's';
+                container.appendChild(sparkle);
+            }
+        }
+        
+        createSparkles();
+        
+        // Add more sparkles on click
+        document.addEventListener('click', (e) => {
+            for (let i = 0; i < 10; i++) {
+                const burst = document.createElement('div');
+                burst.style.position = 'fixed';
+                burst.style.left = e.clientX + 'px';
+                burst.style.top = e.clientY + 'px';
+                burst.style.fontSize = '30px';
+                burst.textContent = '✨';
+                burst.style.pointerEvents = 'none';
+                burst.style.animation = 'explode 1s forwards';
+                burst.style.setProperty('--x', (Math.random() - 0.5) * 200 + 'px');
+                burst.style.setProperty('--y', (Math.random() - 0.5) * 200 + 'px');
+                document.body.appendChild(burst);
+                setTimeout(() => burst.remove(), 1000);
+            }
+        });
+        
+        // Add explosion animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% { transform: translate(0, 0) scale(0); opacity: 1; }
+                100% { transform: translate(var(--x), var(--y)) scale(2); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

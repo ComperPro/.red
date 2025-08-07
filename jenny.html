@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 JENNY - 867-5309 DEALS CLOSED! 🌈</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #FFA07A);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .phone-number {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 36px;
+            color: white;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 15px;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 80px;
+            color: white;
+            margin-top: 50px;
+            text-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: skewY(0deg); }
+            50% { transform: skewY(-5deg); }
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .hero-message {
+            font-size: 32px;
+            color: white;
+            margin: 30px 0;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .deals-counter {
+            background: white;
+            color: #333;
+            display: inline-block;
+            padding: 30px 50px;
+            border-radius: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            margin: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .feature-desc {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .call-jenny {
+            text-align: center;
+            margin: 80px 0;
+        }
+        
+        .call-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 25px 60px;
+            font-size: 32px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            animation: ring 1s infinite;
+        }
+        
+        @keyframes ring {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .call-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-style: italic;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .music-notes {
+            position: fixed;
+            font-size: 40px;
+            animation: float-up 5s infinite;
+        }
+        
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-number">📞 867-5309</div>
+    
+    <h1>JENNY</h1>
+    
+    <div class="hero-section">
+        <p class="hero-message">Got her number off the wall!</p>
+        <div class="deals-counter">
+            <span id="dealCount">867-5309</span> DEALS CLOSED!
+        </div>
+        <p class="hero-message">For a good time in real estate, call...</p>
+    </div>
+    
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">📞</div>
+            <div class="feature-title">Always Available</div>
+            <div class="feature-desc">Jenny picks up on the first ring. No voicemail, no waiting, just deals!</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💖</div>
+            <div class="feature-title">Loved By All</div>
+            <div class="feature-desc">Everyone who works with Jenny becomes a friend for life!</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <div class="feature-title">Legendary Status</div>
+            <div class="feature-desc">They wrote a song about her success. That's how good she is!</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-title">Record Breaker</div>
+            <div class="feature-desc">867-5309 isn't just a number, it's how many commissions she's saved!</div>
+        </div>
+    </div>
+    
+    <div class="testimonial">
+        "I got Jenny's number and my life changed forever!<br>
+        Saved $75,000 on my first deal.<br>
+        Now I call her for everything!"<br>
+        <br>
+        - Tommy Tutone (probably)
+    </div>
+    
+    <div class="call-jenny">
+        <a href="https://chrome.google.com/webstore/detail/comps-red" class="call-button">
+            📞 CALL JENNY NOW!
+        </a>
+    </div>
+    
+    <div class="footer">
+        <p>🎵 Jenny, Jenny, who can I turn to? 🎵</p>
+        <p>You give me something I can hold on to!</p>
+        <p>I know you'll think I'm like the others before...</p>
+        <p>Who saw your name and number on the wall!</p>
+        <br>
+        <p><strong>867-5309 / JENNY</strong></p>
+    </div>
+    
+    <script>
+        // Add floating music notes
+        function createMusicNote() {
+            const notes = ['♪', '♫', '♬', '♩'];
+            const note = document.createElement('div');
+            note.className = 'music-notes';
+            note.textContent = notes[Math.floor(Math.random() * notes.length)];
+            note.style.left = Math.random() * 100 + '%';
+            note.style.animationDelay = Math.random() * 5 + 's';
+            note.style.color = 'rgba(255,255,255,0.7)';
+            document.body.appendChild(note);
+            
+            setTimeout(() => note.remove(), 5000);
+        }
+        
+        // Create music notes periodically
+        setInterval(createMusicNote, 1000);
+        
+        // Animate the deal counter
+        let counting = false;
+        document.getElementById('dealCount').addEventListener('click', function() {
+            if (!counting) {
+                counting = true;
+                let count = 0;
+                const target = 8675309;
+                const increment = Math.ceil(target / 100);
+                
+                const counter = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(counter);
+                        counting = false;
+                        this.textContent = '867-5309';
+                    } else {
+                        this.textContent = count.toLocaleString();
+                    }
+                }, 20);
+            }
+        });
+        
+        // Add phone ring effect on hover
+        document.querySelector('.call-button').addEventListener('mouseenter', function() {
+            this.style.animation = 'ring 0.2s infinite';
+        });
+        
+        document.querySelector('.call-button').addEventListener('mouseleave', function() {
+            this.style.animation = 'ring 1s infinite';
+        });
+    </script>
+</body>
+</html>
