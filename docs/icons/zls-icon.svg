@@ -1,0 +1,28 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="60" fill="#DC2626"/>
+  
+  <!-- Deck of Cards Design -->
+  <!-- Back Card -->
+  <rect x="38" y="48" width="40" height="56" rx="4" fill="#FEE2E2" transform="rotate(-5 58 76)"/>
+  
+  <!-- Middle Card -->
+  <rect x="42" y="44" width="40" height="56" rx="4" fill="#FECACA" transform="rotate(-2.5 62 72)"/>
+  
+  <!-- Front Card (Property Card) -->
+  <rect x="46" y="40" width="40" height="56" rx="4" fill="white"/>
+  
+  <!-- Card Content -->
+  <!-- House Icon -->
+  <path d="M66 52L56 60V68H62V62H70V68H76V60L66 52Z" fill="#DC2626"/>
+  <path d="M64 48L66 50L78 60H80L66 48L52 60H54L66 50Z" fill="#DC2626"/>
+  
+  <!-- Data Lines -->
+  <rect x="54" y="74" width="24" height="2" rx="1" fill="#E5E7EB"/>
+  <rect x="54" y="78" width="20" height="2" rx="1" fill="#E5E7EB"/>
+  <rect x="54" y="82" width="16" height="2" rx="1" fill="#E5E7EB"/>
+  
+  <!-- Small dot indicator -->
+  <circle cx="88" cy="88" r="8" fill="#059669"/>
+  <path d="M85 88L87 90L91 86" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

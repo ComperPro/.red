@@ -1,0 +1,202 @@
+/* Styles for elements injected into Zillow pages */
+
+/* Scraping indicator overlay */
+.zillow-scraper-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #006AFF;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 106, 255, 0.3);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.zillow-scraper-indicator::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Scraped property highlight */
+.zillow-scraper-scraped {
+  position: relative;
+}
+
+.zillow-scraper-scraped::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Property hover effect */
+.zillow-scraper-hover {
+  outline: 3px solid #006AFF;
+  outline-offset: 2px;
+  cursor: pointer;
+}
+
+/* Loading spinner */
+.zillow-scraper-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Notification toast */
+.zillow-scraper-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+  animation: toastSlideUp 0.3s ease-out;
+  max-width: 300px;
+}
+
+@keyframes toastSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.zillow-scraper-toast.success {
+  background: #28a745;
+}
+
+.zillow-scraper-toast.error {
+  background: #dc3545;
+}
+
+.zillow-scraper-toast.info {
+  background: #17a2b8;
+}
+
+/* Batch selection mode */
+.zillow-scraper-selection-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 106, 255, 0.95);
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  z-index: 999998;
+}
+
+.zillow-scraper-selectable {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.zillow-scraper-selectable:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 106, 255, 0.3);
+}
+
+.zillow-scraper-selected {
+  outline: 3px solid #28a745;
+  outline-offset: 2px;
+}
+
+/* Property counter badge */
+.zillow-scraper-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #006AFF;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 106, 255, 0.3);
+  z-index: 999999;
+}
+
+/* Progress bar */
+.zillow-scraper-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 106, 255, 0.2);
+  z-index: 999999;
+}
+
+.zillow-scraper-progress-bar {
+  height: 100%;
+  background: #006AFF;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 106, 255, 0.7);
+}

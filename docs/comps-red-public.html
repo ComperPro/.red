@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>35 Green Valley Court - COMPS.RED Truth Report</title>
+    <meta name="description" content="Save $75,000 in real estate commissions. See the truth about 35 Green Valley Court, San Anselmo, CA. Real comps, real data, no BS.">
+    <meta property="og:title" content="Save $75,000 on this property - COMPS.RED">
+    <meta property="og:description" content="Agents want $75,000 commission for 20 hours work. See the real data.">
+    <meta property="og:image" content="https://comps.red/images/save-75000.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section - The Truth Bomb */
+        .truth-bomb {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .truth-bomb::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .commission-alert {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .commission-amount {
+            font-size: 4em;
+            font-weight: 900;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .commission-breakdown {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .hourly-rate {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Social Proof Bar */
+        .social-proof {
+            background: #111;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #ff0000;
+        }
+
+        .social-proof-item {
+            display: inline-block;
+            margin: 0 20px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .social-proof-number {
+            font-size: 1.5em;
+        }
+
+        /* Property Header */
+        .property-header {
+            background: #1a1a1a;
+            padding: 30px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .property-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .property-address {
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .property-price {
+            font-size: 3em;
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Truth Cards */
+        .truth-card {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .truth-card h2 {
+            color: #ff0000;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .overpriced-banner {
+            background: #ff0000;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: flash 3s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Comps Table */
+        .comps-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comps-table th {
+            background: #ff0000;
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comps-table td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+        }
+
+        .comps-table tr:hover {
+            background: rgba(255,0,0,0.1);
+        }
+
+        /* Share Section */
+        .share-section {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            border: 2px solid #ff0000;
+        }
+
+        .share-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            padding: 15px 30px;
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .share-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .share-btn.facebook {
+            background: #1877F2;
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+
+        /* Copy Link Section */
+        .copy-link {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .copy-link input {
+            flex: 1;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .copy-btn {
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            padding: 50px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .cta-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #fff;
+            color: #ff0000;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .commission-amount {
+                font-size: 3em;
+            }
+            
+            .property-title {
+                font-size: 1.8em;
+            }
+            
+            .property-price {
+                font-size: 2em;
+            }
+        }
+
+        /* Red Alert Animation */
+        .red-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff0000;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .viewer-count {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,0,0,0.9);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Commission Truth Bomb -->
+    <div class="truth-bomb">
+        <div class="commission-alert">
+            <div class="commission-amount">$75,000</div>
+            <div class="commission-breakdown">That's what agents want in commission for this property</div>
+            <div class="hourly-rate">$3,750/hour for 20 hours of work</div>
+            <div style="font-size: 1.1em; margin-top: 20px;">
+                You could hire a lawyer, accountant, AND contractor for less
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Bar -->
+    <div class="social-proof">
+        <span class="social-proof-item">
+            <span class="social-proof-number">437</span> investors analyzed this
+        </span>
+        <span class="social-proof-item">
+            <span class="social-proof-number">92</span> said overpriced
+        </span>
+        <span class="social-proof-item">
+            <span class="social-proof-number">$2.3M</span> saved in commissions
+        </span>
+    </div>
+
+    <!-- Property Header -->
+    <div class="property-header">
+        <div class="container">
+            <h1 class="property-title">The Truth About This Property</h1>
+            <div class="property-address">35 Green Valley Court, San Anselmo, CA 94960</div>
+            <div class="property-price">$1,250,000</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="left-column">
+            <!-- Overpriced Alert -->
+            <div class="truth-card">
+                <div class="overpriced-banner">
+                    ⚠️ OVERPRICED BY $125,000 BASED ON COMPS
+                </div>
+                <h2>Real Comparable Sales</h2>
+                <table class="comps-table">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Sold Price</th>
+                            <th>$/Sqft</th>
+                            <th>Days Ago</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>42 Oak Street</td>
+                            <td>$1,185,000</td>
+                            <td>$718</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>118 Maple Ave</td>
+                            <td>$1,320,000</td>
+                            <td>$713</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>201 Pine Road</td>
+                            <td>$1,125,000</td>
+                            <td>$662</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 20px; padding: 15px; background: #222; border-radius: 8px;">
+                    <strong style="color: #ff0000;">Fair Market Value:</strong> 
+                    <span style="font-size: 1.5em; color: #fff;">$1,125,000</span>
+                </div>
+            </div>
+
+            <!-- ROI Analysis -->
+            <div class="truth-card">
+                <h2>Investment Reality Check</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">-2%</div>
+                        <div class="stat-label">ROI as Flip</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$75K</div>
+                        <div class="stat-label">Reno Needed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4.2%</div>
+                        <div class="stat-label">Cap Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">182</div>
+                        <div class="stat-label">Days on Market</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,0,0,0.1); border-radius: 8px; border: 1px solid #ff0000;">
+                    <strong>Reality:</strong> At this price, you'll lose money. The seller is banking on you not knowing the comps.
+                </div>
+            </div>
+
+            <!-- Commission Breakdown -->
+            <div class="truth-card">
+                <h2>Where Your $75,000 Goes</h2>
+                <div style="display: grid; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between; padding: 10px; background: #222; border-radius: 4px;">
+                        <span>Listing Agent (3%)</span>
+                        <strong>$37,500</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 10px; background: #222; border-radius: 4px;">
+                        <span>Buyer's Agent (3%)</span>
+                        <strong>$37,500</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 10px; background: #222; border-radius: 4px;">
+                        <span>Hours of Agent Work</span>
+                        <strong>~20 hours</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 10px; background: #ff0000; border-radius: 4px;">
+                        <span>Hourly Rate</span>
+                        <strong>$3,750/hour</strong>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; color: #999;">
+                    For comparison: Top surgeons make $500/hour. Top lawyers make $1,000/hour.
+                </div>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <!-- Quick Stats -->
+            <div class="truth-card">
+                <h2>Quick Facts</h2>
+                <div style="display: grid; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Bedrooms</span>
+                        <strong>3</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Bathrooms</span>
+                        <strong>2</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Square Feet</span>
+                        <strong>1,731</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Year Built</span>
+                        <strong>1965</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Price/Sqft</span>
+                        <strong style="color: #ff0000;">$722</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #999;">Market Avg/Sqft</span>
+                        <strong style="color: #00ff00;">$650</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save Money Box -->
+            <div class="truth-card" style="background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);">
+                <h2 style="color: #fff;">Save This Money</h2>
+                <div style="font-size: 2em; font-weight: bold; margin: 20px 0;">
+                    $75,000
+                </div>
+                <div style="margin-bottom: 20px;">
+                    Use COMPS.RED to buy/sell without the 6% commission racket
+                </div>
+                <a href="install.html" target="_blank" class="share-btn" style="background: #fff; color: #ff0000; width: 100%; text-align: center;">
+                    Get The Chrome Extension
+                </a>
+            </div>
+
+            <!-- Truth Metrics -->
+            <div class="truth-card">
+                <h2>Truth Metrics™</h2>
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <div style="font-size: 1.5em; color: #ff0000; font-weight: bold;">8.5/10</div>
+                        <div style="color: #999;">Overpriced Score</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5em; color: #ff0000; font-weight: bold;">182 days</div>
+                        <div style="color: #999;">Sitting on Market</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5em; color: #ff0000; font-weight: bold;">3 drops</div>
+                        <div style="color: #999;">Price Reductions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Section -->
+    <div class="container">
+        <div class="share-section">
+            <h2 class="share-title">Expose The Truth - Share This Report</h2>
+            <div class="share-buttons">
+                <a href="javascript:void(0)" onclick="shareWhatsApp(); return false;" class="share-btn whatsapp">WhatsApp</a>
+                <a href="javascript:void(0)" onclick="shareText(); return false;" class="share-btn">Text Message</a>
+                <a href="javascript:void(0)" onclick="shareFacebook(); return false;" class="share-btn facebook">Facebook</a>
+                <a href="javascript:void(0)" onclick="shareTwitter(); return false;" class="share-btn twitter">Twitter</a>
+                <a href="javascript:void(0)" onclick="shareEmail(); return false;" class="share-btn">Email</a>
+            </div>
+            <div class="copy-link">
+                <input type="text" id="shareLink" value="" readonly>
+                <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2 class="cta-title">Stop Paying 6% Commission</h2>
+        <div class="cta-subtitle">
+            Join 10,000+ smart buyers and sellers saving millions in commissions
+        </div>
+        <a href="install.html" target="_blank" class="cta-button">Get COMPS.RED Free</a>
+    </div>
+
+    <!-- Live Viewer Count -->
+    <div class="viewer-count">
+        <span class="live-dot"></span>
+        <span id="viewerCount">12</span> people viewing now
+    </div>
+
+    <!-- Alert Notification -->
+    <div class="red-alert" id="alert">
+        Link copied! Share the truth.
+    </div>
+
+    <script>
+        // Simulate live viewers
+        function updateViewers() {
+            const count = Math.floor(Math.random() * 10) + 8;
+            document.getElementById('viewerCount').textContent = count;
+        }
+        setInterval(updateViewers, 5000);
+
+        // Copy link function
+        function copyLink() {
+            const input = document.getElementById('shareLink');
+            input.select();
+            document.execCommand('copy');
+            
+            const alert = document.getElementById('alert');
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Share functions
+        const propertyUrl = window.location.href;
+        const shareMessage = 'This property wants $75,000 in commission! See the truth:';
+
+        function shareWhatsApp() {
+            const url = `https://wa.me/?text=${encodeURIComponent(shareMessage + ' ' + propertyUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareText() {
+            const url = `sms:?body=${encodeURIComponent(shareMessage + ' ' + propertyUrl)}`;
+            window.location.href = url;
+        }
+
+        function shareFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareTwitter() {
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}&url=${encodeURIComponent(propertyUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareEmail() {
+            const subject = 'Check out this property analysis';
+            const body = shareMessage + ' ' + propertyUrl;
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Auto-calculate commission based on price
+        function updateCommission() {
+            const price = 1250000;
+            const commission = price * 0.06;
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0
+            }).format(commission);
+            
+            // Update all commission displays
+            document.querySelector('.commission-amount').textContent = formatted;
+        }
+
+        // Track page views (would connect to real analytics)
+        function trackView() {
+            console.log('Property view tracked:', {
+                property: '35 Green Valley Court',
+                timestamp: new Date().toISOString(),
+                referrer: document.referrer
+            });
+        }
+
+        // Initialize
+        trackView();
+        
+        // Set the share link value on page load
+        document.getElementById('shareLink').value = window.location.href;
+    </script>
+    <!-- For D & M -->
+    <div style="display: none;" data-message="hope">
+        Dawson and Marc - I hope you see that red, other pull out your cards to get out.
+        Head doesn't matter to me. You guys have no clue, but I still love you.
+        🎴 The game is bigger than the hand.
+    </div>
+</body>
+</html>
