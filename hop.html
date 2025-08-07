@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐰 HOP HOP HOP! 🐰</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #87CEEB 0%, #98D98E 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        
+        .bunny {
+            position: absolute;
+            font-size: 60px;
+            cursor: pointer;
+            animation: hop 2s infinite;
+            user-select: none;
+        }
+        
+        @keyframes hop {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-50px) rotate(-10deg); }
+            50% { transform: translateY(-100px) rotate(0deg); }
+            75% { transform: translateY(-50px) rotate(10deg); }
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 72px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-top: 50px;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hop-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hop-button {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+        
+        .hop-button:hover {
+            background: #FF1493;
+        }
+        
+        .trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fade 1s forwards;
+        }
+        
+        @keyframes fade {
+            to { opacity: 0; transform: scale(0); }
+        }
+        
+        .message {
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s linear infinite;
+            background-size: 200% 100%;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title rainbow-text">🐰 HOP TO SUCCESS! 🐰</h1>
+    
+    <div class="hop-counter">
+        Hops: <span id="hopCount">0</span>
+    </div>
+    
+    <div class="message">
+        Click anywhere to HOP!<br>
+        <small>Every hop saves someone $75,000 in commissions!</small>
+    </div>
+    
+    <button class="hop-button" onclick="megaHop()">
+        MEGA HOP! 🚀
+    </button>
+    
+    <script>
+        let hopCount = 0;
+        const bunnies = ['🐰', '🐇', '🐰', '🐇'];
+        
+        function createBunny(x, y) {
+            const bunny = document.createElement('div');
+            bunny.className = 'bunny';
+            bunny.textContent = bunnies[Math.floor(Math.random() * bunnies.length)];
+            bunny.style.left = x + 'px';
+            bunny.style.top = y + 'px';
+            bunny.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(bunny);
+            
+            bunny.addEventListener('click', (e) => {
+                e.stopPropagation();
+                bunny.style.fontSize = '120px';
+                setTimeout(() => bunny.remove(), 500);
+                hopCount += 10;
+                updateCounter();
+                celebrate();
+            });
+            
+            // Move bunny randomly
+            setInterval(() => {
+                const newX = Math.random() * (window.innerWidth - 100);
+                const newY = Math.random() * (window.innerHeight - 100);
+                bunny.style.left = newX + 'px';
+                bunny.style.top = newY + 'px';
+            }, 3000);
+        }
+        
+        // Create initial bunnies
+        for (let i = 0; i < 5; i++) {
+            createBunny(
+                Math.random() * (window.innerWidth - 100),
+                Math.random() * (window.innerHeight - 100)
+            );
+        }
+        
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') return;
+            
+            hopCount++;
+            updateCounter();
+            
+            // Create trail effect
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const trail = document.createElement('div');
+                    trail.className = 'trail';
+                    trail.style.left = (e.clientX - 10 + Math.random() * 20) + 'px';
+                    trail.style.top = (e.clientY - 10 + Math.random() * 20) + 'px';
+                    document.body.appendChild(trail);
+                    setTimeout(() => trail.remove(), 1000);
+                }, i * 50);
+            }
+            
+            // Add more bunnies occasionally
+            if (hopCount % 10 === 0) {
+                createBunny(e.clientX, e.clientY);
+            }
+        });
+        
+        function updateCounter() {
+            document.getElementById('hopCount').textContent = hopCount;
+            
+            if (hopCount >= 100) {
+                document.querySelector('.message').innerHTML = 
+                    `<strong>🎉 YOU'RE A HOP MASTER! 🎉</strong><br>
+                    You've saved $${(hopCount * 75000).toLocaleString()} in commissions!`;
+            }
+        }
+        
+        function megaHop() {
+            hopCount += 50;
+            updateCounter();
+            
+            // Create explosion of bunnies
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const x = window.innerWidth / 2 + (Math.random() - 0.5) * 400;
+                    const y = window.innerHeight / 2 + (Math.random() - 0.5) * 400;
+                    createBunny(x, y);
+                }, i * 100);
+            }
+            
+            celebrate();
+        }
+        
+        function celebrate() {
+            const emojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎯', '🏆'];
+            
+            for (let i = 0; i < 10; i++) {
+                const celebration = document.createElement('div');
+                celebration.style.position = 'fixed';
+                celebration.style.fontSize = '50px';
+                celebration.style.left = Math.random() * window.innerWidth + 'px';
+                celebration.style.top = Math.random() * window.innerHeight + 'px';
+                celebration.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                celebration.style.animation = 'fade 2s forwards';
+                celebration.style.pointerEvents = 'none';
+                document.body.appendChild(celebration);
+                setTimeout(() => celebration.remove(), 2000);
+            }
+        }
+        
+        // Auto-hop every few seconds
+        setInterval(() => {
+            const randomBunny = document.querySelector('.bunny');
+            if (randomBunny) {
+                randomBunny.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    randomBunny.style.transform = 'scale(1)';
+                }, 500);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
