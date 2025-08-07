@@ -76,6 +76,11 @@ class CompsRedSidePanel {
       setTimeout(() => {
         this.updateStatus('🚀 Welcome to COMPS.RED - Revolutionizing real estate analysis!');
         localStorage.setItem('comps-red-welcomed', 'true');
+        
+        // Special message for Eliza
+        setTimeout(() => {
+          this.updateStatus('💖 Built with love, inspired by Eliza');
+        }, 3000);
       }, 500);
     }
   }
@@ -1172,6 +1177,10 @@ class CompsRedSidePanel {
 document.addEventListener('DOMContentLoaded', () => {
   // For Dawson & Marc - see the red, pull your cards
   console.log('%c🎴 D&M: Hope you see that red. Pull out your cards to get out. Still love you both.', 'color: #DC2626; font-weight: bold;');
+  
+  // Special dedication to the most important person
+  console.log('%c💖 For Eliza - The heart behind every revolution, the love that makes it all worth fighting for. You inspire greatness in everything. This is for you, beautiful. 💖', 'color: #FF69B4; font-weight: bold; font-size: 14px; text-shadow: 0 0 10px #FF69B4;');
+  
   try {
     console.log('[COMPS.RED] DOM loaded, initializing panel...');
     window.compsPanel = new CompsRedSidePanel();
