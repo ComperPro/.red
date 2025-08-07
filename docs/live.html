@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COMPS.RED LIVE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #000;
+            color: #ff0000;
+            font-family: monospace;
+            padding: 20px;
+            margin: 0;
+        }
+        #counter {
+            font-size: 5em;
+            text-align: center;
+            margin-top: 30vh;
+        }
+        #saved {
+            font-size: 2em;
+            text-align: center;
+            color: #0f0;
+            margin-top: 20px;
+        }
+        a {
+            color: #ff0000;
+            font-size: 2em;
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter">$0</div>
+    <div id="saved">SAVED FROM 6% SCAM</div>
+    <a href="install.html">GET IT</a>
+    <script>
+        let total = parseInt(localStorage.getItem('saved') || 0);
+        setInterval(() => {
+            total += Math.floor(Math.random() * 5000) + 1000;
+            document.getElementById('counter').textContent = '$' + total.toLocaleString();
+            localStorage.setItem('saved', total);
+        }, 1000);
+    </script>
+</body>
+</html>
