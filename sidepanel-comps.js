@@ -93,11 +93,12 @@ class CompsRedSidePanel {
     this.deckStatus = document.getElementById('deckStatus');
     this.commissionSaved = document.querySelector('.saved-amount');
     
-    // Action buttons
+    // Enhanced action buttons
     this.drawCardBtn = document.getElementById('drawCardBtn');
     this.viewDeckBtn = document.getElementById('viewDeckBtn');
     this.renovationBtn = document.getElementById('renovationBtn');
     this.exportBtn = document.getElementById('exportBtn');
+    this.aiInsightsBtn = document.getElementById('aiInsightsBtn');
     this.clearDeckBtn = document.getElementById('clearDeckBtn');
     
     // Debug: Log which buttons were found
@@ -106,6 +107,7 @@ class CompsRedSidePanel {
       viewDeckBtn: !!this.viewDeckBtn,
       renovationBtn: !!this.renovationBtn,
       exportBtn: !!this.exportBtn,
+      aiInsightsBtn: !!this.aiInsightsBtn,
       clearDeckBtn: !!this.clearDeckBtn
     });
     
@@ -115,6 +117,9 @@ class CompsRedSidePanel {
     // Initialize renovation calculator
     this.renovationCalc = new RenovationCalculator();
     this.renovationUI = new RenovationUI(this.renovationCalc);
+    
+    // Initialize AI insights engine
+    this.aiEngine = new AIInsightsEngine();
     
     // Update branding
     this.updateBranding();
@@ -204,6 +209,16 @@ class CompsRedSidePanel {
         console.log('[COMPS.RED] Export/Cash Out button clicked');
         console.log('[COMPS.RED] Button ID:', e.target.id || e.target.parentElement.id);
         this.showExportOptions();
+      });
+    }
+    
+    // AI Insights button
+    if (this.aiInsightsBtn) {
+      this.aiInsightsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('[COMPS.RED] AI Insights button clicked');
+        this.showAIInsights();
       });
     }
     
@@ -482,22 +497,75 @@ class CompsRedSidePanel {
       return acc;
     }, { masters: 0, comps: 0 });
     
+    // Update basic counts
     if (this.primaryCardCount) this.primaryCardCount.textContent = stats.masters;
     if (this.compCardCount) this.compCardCount.textContent = stats.comps;
     
-    // Update deck status
-    if (stats.masters === 0) {
-      this.updateDeckStatus('empty', '🎴 Deal your first card to start the game!');
-    } else if (stats.comps === 0) {
-      this.updateDeckStatus('needs-comps', '🎯 Draw comp cards to build your hand');
-    } else if (stats.comps < 3) {
-      this.updateDeckStatus('building', `🃏 ${3 - stats.comps} more cards for a full hand!`);
-    } else {
-      this.updateDeckStatus('ready', '🏆 Full house! Ready to score your hand');
+    // Calculate and update suggested value
+    const analysis = this.currentDeck.generateAnalysis();
+    if (analysis?.summary?.suggestedValue && this.suggestedValue) {
+      this.suggestedValue.textContent = `$${Math.round(analysis.summary.suggestedValue / 1000)}K`;
     }
+    
+    // Calculate accuracy score based on comparable quality
+    const accuracyScore = this.calculateAccuracyScore();
+    if (this.accuracyScore) {
+      this.accuracyScore.textContent = `${accuracyScore}%`;
+    }
+    
+    // Calculate commission saved (6% of suggested value)
+    if (analysis?.summary?.suggestedValue && this.commissionSaved) {
+      const commissionSaved = Math.round(analysis.summary.suggestedValue * 0.06);
+      this.commissionSaved.textContent = `$${(commissionSaved / 1000).toFixed(0)}K`;
+    }
+    
+    // Update enhanced deck status
+    this.updateEnhancedDeckStatus(stats);
     
     // Update button text based on deck status
     this.updateDrawButton("ready");
+  }
+
+  calculateAccuracyScore() {
+    if (!this.currentDeck || this.currentDeck.cards.length < 2) return 0;
+    
+    const comparables = this.currentDeck.cards.filter(card => !card.isMaster);
+    if (comparables.length === 0) return 0;
+    
+    // Average the comparability scores
+    const totalScore = comparables.reduce((sum, card) => {
+      return sum + (card.comparisonToPrimary?.comparabilityScore || 0);
+    }, 0);
+    
+    return Math.round(totalScore / comparables.length);
+  }
+
+  updateEnhancedDeckStatus(stats) {
+    const statusElement = this.deckStatus?.querySelector('.status-text');
+    const progressElement = document.getElementById('statusProgress');
+    
+    if (!statusElement) return;
+    
+    if (stats.masters === 0) {
+      statusElement.textContent = 'Ready to revolutionize your analysis!';
+      this.updateProgressBar(progressElement, 0);
+    } else if (stats.comps === 0) {
+      statusElement.textContent = 'Primary property loaded - add comparables';
+      this.updateProgressBar(progressElement, 25);
+    } else if (stats.comps < 3) {
+      statusElement.textContent = `Building analysis deck - ${3 - stats.comps} more needed`;
+      this.updateProgressBar(progressElement, 25 + (stats.comps * 25));
+    } else {
+      statusElement.textContent = 'Analysis complete - ready for insights!';
+      this.updateProgressBar(progressElement, 100);
+    }
+  }
+
+  updateProgressBar(element, percentage) {
+    if (element) {
+      element.style.setProperty('--progress-width', `${percentage}%`);
+      element.style.width = `${percentage}%`;
+    }
   }
   updateDeckStatus(status, message) {
     if (this.deckStatus) {
@@ -541,6 +609,160 @@ class CompsRedSidePanel {
     
     // Open viewer
     chrome.tabs.create({ url: viewerUrl });
+  }
+
+  showAIInsights() {
+    console.log('[COMPS.RED] Generating AI-powered market insights...');
+    
+    if (!this.currentDeck || this.currentDeck.cards.length < 2) {
+      this.updateStatus('🧠 Need at least 2 properties to generate AI insights');
+      return;
+    }
+    
+    const insights = this.generateAIInsights();
+    
+    const modal = document.createElement('div');
+    modal.className = 'ai-insights-modal';
+    modal.innerHTML = `
+      <div class="modal-overlay">
+        <div class="modal-container ai-container">
+          <div class="modal-header ai-header">
+            <h2>🧠 AI Market Insights</h2>
+            <div class="ai-badge">POWERED BY 250+ FLIP EXPERIENCE</div>
+            <button class="modal-close-btn" id="closeAIModal">×</button>
+          </div>
+          <div class="modal-body">
+            ${this.renderAIInsights(insights)}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close modal functionality
+    const closeBtn = document.getElementById('closeAIModal');
+    const overlay = modal.querySelector('.modal-overlay');
+    
+    const closeModal = () => modal.remove();
+    
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    
+    // ESC key to close
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    this.updateStatus('🧠 AI insights generated from veteran flip experience!');
+  }
+
+  generateAIInsights() {
+    const analysis = this.currentDeck.generateAnalysis();
+    const primary = this.currentDeck.primaryCard;
+    const comparables = this.currentDeck.cards.filter(card => !card.isMaster);
+    
+    return {
+      marketTrend: this.aiEngine.analyzeMarketTrend(analysis),
+      dealQuality: this.aiEngine.analyzeDealQuality(primary, analysis),
+      riskFactors: this.aiEngine.identifyRiskFactors(primary, comparables),
+      opportunities: this.aiEngine.identifyOpportunities(primary, comparables),
+      priceRecommendation: this.aiEngine.generatePriceRecommendation(analysis),
+      flipPotential: this.aiEngine.assessFlipPotential(primary, analysis),
+      timeToSell: this.aiEngine.estimateTimeToSell(primary, comparables),
+      competitionLevel: this.aiEngine.assessCompetition(comparables)
+    };
+  }
+
+  renderAIInsights(insights) {
+    return `
+      <div class="ai-insights">
+        <div class="insights-grid">
+          <div class="insight-card deal-quality">
+            <div class="insight-header">
+              <span class="insight-icon">${insights.dealQuality.icon}</span>
+              <h3>Deal Quality</h3>
+            </div>
+            <div class="insight-score ${insights.dealQuality.level}">${insights.dealQuality.score}/10</div>
+            <p class="insight-text">${insights.dealQuality.analysis}</p>
+          </div>
+          
+          <div class="insight-card market-trend">
+            <div class="insight-header">
+              <span class="insight-icon">📈</span>
+              <h3>Market Trend</h3>
+            </div>
+            <div class="insight-value">${insights.marketTrend.direction}</div>
+            <p class="insight-text">${insights.marketTrend.analysis}</p>
+          </div>
+          
+          <div class="insight-card flip-potential">
+            <div class="insight-header">
+              <span class="insight-icon">🔄</span>
+              <h3>Flip Potential</h3>
+            </div>
+            <div class="insight-value">${insights.flipPotential.profit}</div>
+            <p class="insight-text">${insights.flipPotential.analysis}</p>
+          </div>
+          
+          <div class="insight-card time-to-sell">
+            <div class="insight-header">
+              <span class="insight-icon">⏰</span>
+              <h3>Time to Sell</h3>
+            </div>
+            <div class="insight-value">${insights.timeToSell.estimate}</div>
+            <p class="insight-text">${insights.timeToSell.analysis}</p>
+          </div>
+        </div>
+        
+        <div class="detailed-insights">
+          <div class="risk-factors">
+            <h3>🚨 Risk Factors</h3>
+            <ul class="risk-list">
+              ${insights.riskFactors.map(risk => `<li class="risk-item ${risk.severity}">${risk.description}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <div class="opportunities">
+            <h3>💎 Opportunities</h3>
+            <ul class="opportunity-list">
+              ${insights.opportunities.map(opp => `<li class="opportunity-item">${opp.description}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <div class="price-recommendation">
+            <h3>💰 Price Recommendation</h3>
+            <div class="price-ranges">
+              <div class="price-range">
+                <span class="range-label">Conservative Offer:</span>
+                <span class="range-value">${insights.priceRecommendation.conservative}</span>
+              </div>
+              <div class="price-range">
+                <span class="range-label">Aggressive Offer:</span>
+                <span class="range-value">${insights.priceRecommendation.aggressive}</span>
+              </div>
+              <div class="price-range highlight">
+                <span class="range-label">Sweet Spot:</span>
+                <span class="range-value">${insights.priceRecommendation.sweetSpot}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="ai-footer">
+          <div class="disclaimer">
+            <strong>⚡ VETERAN INSIGHT:</strong> These recommendations are based on 250+ successful flips and revolutionary scoring algorithms.
+            Always verify with local market conditions and professional due diligence.
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   showRenovationCalculator() {
