@@ -14,34 +14,51 @@ class RenovationCalculator {
   }
 
   calculateKitchen(sqft, level = 'standard') {
+    // Real costs from 250+ flips - kitchen is typically 10% of home sqft
+    const kitchenSqft = sqft * 0.1;
     const costs = {
-      budget: { cabinets: 100, counters: 40, appliances: 150, labor: 80 },
-      standard: { cabinets: 200, counters: 75, appliances: 250, labor: 120 },
-      premium: { cabinets: 400, counters: 150, appliances: 500, labor: 200 }
+      budget: { 
+        cabinets: 3000,     // Home Depot stock cabinets
+        counters: 1500,     // Laminate countertops
+        appliances: 2500,   // Basic appliance package
+        labor: 3000         // Installation
+      },
+      standard: { 
+        cabinets: 8000,     // Semi-custom cabinets
+        counters: 3500,     // Quartz countertops
+        appliances: 5000,   // Stainless steel package
+        labor: 5000         // Professional installation
+      },
+      premium: { 
+        cabinets: 20000,    // Custom cabinets
+        counters: 8000,     // High-end quartz/granite
+        appliances: 15000,  // Professional grade
+        labor: 10000        // Expert installation
+      }
     };
     
-    const perSqft = costs[level];
-    const materials = (perSqft.cabinets + perSqft.counters + perSqft.appliances) * sqft;
-    const labor = perSqft.labor * sqft;
+    const selected = costs[level];
+    const materials = selected.cabinets + selected.counters + selected.appliances;
+    const labor = selected.labor;
     
     return {
       materials: Math.round(materials),
       labor: Math.round(labor),
       total: Math.round(materials + labor),
       breakdown: {
-        cabinets: Math.round(perSqft.cabinets * sqft),
-        countertops: Math.round(perSqft.counters * sqft),
-        appliances: Math.round(perSqft.appliances * sqft),
-        installation: Math.round(labor)
+        cabinets: selected.cabinets,
+        countertops: selected.counters,
+        appliances: selected.appliances,
+        installation: labor
       }
     };
   }
 
   calculateBathroom(count, level = 'standard') {
     const costs = {
-      budget: { full: 5000, half: 2500 },
-      standard: { full: 10000, half: 5000 },
-      premium: { full: 20000, half: 10000 }
+      budget: { full: 3500, half: 2000 },    // Basic fixtures, tile surround
+      standard: { full: 7000, half: 3500 },  // Good fixtures, full tile
+      premium: { full: 15000, half: 7500 }   // High-end everything
     };
     
     const fullBaths = Math.floor(count);
@@ -59,11 +76,11 @@ class RenovationCalculator {
 
   calculateFlooring(sqft, type = 'lvp') {
     const costs = {
-      carpet: { material: 3, install: 2 },
-      lvp: { material: 4, install: 3 },
-      hardwood: { material: 8, install: 5 },
-      tile: { material: 6, install: 7 },
-      laminate: { material: 3.5, install: 2.5 }
+      carpet: { material: 2, install: 1.5 },      // $3.50/sqft total
+      lvp: { material: 3, install: 2 },           // $5/sqft total  
+      hardwood: { material: 5, install: 3 },      // $8/sqft total
+      tile: { material: 4, install: 4 },          // $8/sqft total
+      laminate: { material: 2.5, install: 2 }     // $4.50/sqft total
     };
     
     const perSqft = costs[type];
@@ -102,10 +119,10 @@ class RenovationCalculator {
     const squares = roofSqft / 100;
     
     const costs = {
-      shingle: { material: 150, labor: 150 },
-      metal: { material: 300, labor: 200 },
-      tile: { material: 400, labor: 250 },
-      flat: { material: 200, labor: 180 }
+      shingle: { material: 100, labor: 100 },   // $200/square total
+      metal: { material: 250, labor: 150 },     // $400/square total
+      tile: { material: 350, labor: 200 },      // $550/square total
+      flat: { material: 150, labor: 150 }       // $300/square total
     };
     
     const perSquare = costs[type];
@@ -124,10 +141,10 @@ class RenovationCalculator {
     const tons = Math.ceil(sqft / 500);
     
     const costs = {
-      central: { unit: 3500, install: 2500 },
-      heatPump: { unit: 4500, install: 3000 },
-      minisplit: { unit: 2000, install: 1500 },
-      window: { unit: 500, install: 200 }
+      central: { unit: 2500, install: 1500 },    // $4000 for 3-ton
+      heatPump: { unit: 3500, install: 2000 },   // $5500 for 3-ton
+      minisplit: { unit: 1500, install: 1000 },  // $2500 per unit
+      window: { unit: 400, install: 100 }        // $500 per unit
     };
     
     const systemCost = costs[system];
@@ -144,13 +161,13 @@ class RenovationCalculator {
 
   calculateElectrical(sqft, scope = 'update') {
     const costs = {
-      update: 15,
-      partial: 25,
-      rewire: 40
+      update: 3,     // $3/sqft for basic updates
+      partial: 6,    // $6/sqft for partial rewire
+      rewire: 10     // $10/sqft for full rewire
     };
     
     const baseCost = costs[scope] * sqft;
-    const panelUpgrade = scope === 'rewire' ? 3000 : 0;
+    const panelUpgrade = scope === 'rewire' ? 2000 : 0;
     
     return {
       wiring: Math.round(baseCost),
@@ -221,13 +238,13 @@ class RenovationCalculator {
 
   calculateDemolition(sqft, scope = 'surface') {
     const costs = {
-      surface: 2,
-      selective: 5,
-      gutToStuds: 10
+      surface: 1,      // $1/sqft light demo
+      selective: 3,    // $3/sqft selective demo
+      gutToStuds: 5    // $5/sqft full gut
     };
     
     const laborCost = costs[scope] * sqft;
-    const dumpsterCost = Math.ceil(sqft / 500) * 500;
+    const dumpsterCost = Math.ceil(sqft / 1000) * 400;  // $400 per 10-yard dumpster
     
     return {
       labor: Math.round(laborCost),

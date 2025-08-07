@@ -31,9 +31,9 @@ class RenovationUI {
             <h4>Kitchen</h4>
             <select id="kitchen-level">
               <option value="none">No Work Needed</option>
-              <option value="budget">Budget ($100-150/sqft)</option>
-              <option value="standard" selected>Standard ($200-300/sqft)</option>
-              <option value="premium">Premium ($400-600/sqft)</option>
+              <option value="budget">Budget ($10K total)</option>
+              <option value="standard" selected>Standard ($21K total)</option>
+              <option value="premium">Premium ($53K total)</option>
             </select>
           </div>
 
@@ -45,9 +45,9 @@ class RenovationUI {
             </div>
             <select id="bathroom-level">
               <option value="none">No Work Needed</option>
-              <option value="budget">Budget ($5K full/$2.5K half)</option>
-              <option value="standard" selected>Standard ($10K full/$5K half)</option>
-              <option value="premium">Premium ($20K full/$10K half)</option>
+              <option value="budget">Budget ($3.5K full/$2K half)</option>
+              <option value="standard" selected>Standard ($7K full/$3.5K half)</option>
+              <option value="premium">Premium ($15K full/$7.5K half)</option>
             </select>
           </div>
 
@@ -59,11 +59,11 @@ class RenovationUI {
             </div>
             <select id="flooring-type">
               <option value="none">No Work Needed</option>
-              <option value="carpet">Carpet ($5/sqft)</option>
-              <option value="lvp" selected>LVP ($7/sqft)</option>
-              <option value="laminate">Laminate ($6/sqft)</option>
-              <option value="tile">Tile ($13/sqft)</option>
-              <option value="hardwood">Hardwood ($13/sqft)</option>
+              <option value="carpet">Carpet ($3.50/sqft)</option>
+              <option value="lvp" selected>LVP ($5/sqft)</option>
+              <option value="laminate">Laminate ($4.50/sqft)</option>
+              <option value="tile">Tile ($8/sqft)</option>
+              <option value="hardwood">Hardwood ($8/sqft)</option>
             </select>
           </div>
 
@@ -80,9 +80,9 @@ class RenovationUI {
             <h4>Electrical</h4>
             <select id="electrical-scope">
               <option value="none">No Work Needed</option>
-              <option value="update" selected>Update ($15/sqft)</option>
-              <option value="partial">Partial Rewire ($25/sqft)</option>
-              <option value="rewire">Full Rewire + Panel ($40/sqft)</option>
+              <option value="update" selected>Update ($3/sqft)</option>
+              <option value="partial">Partial Rewire ($6/sqft)</option>
+              <option value="rewire">Full Rewire + Panel ($10/sqft + $2K)</option>
             </select>
           </div>
 
@@ -112,9 +112,9 @@ class RenovationUI {
             <h4>Demolition</h4>
             <select id="demolition-scope">
               <option value="none">No Demo Needed</option>
-              <option value="surface" selected>Surface Level ($2/sqft)</option>
-              <option value="selective">Selective ($5/sqft)</option>
-              <option value="gutToStuds">Gut to Studs ($10/sqft)</option>
+              <option value="surface" selected>Surface Level ($1/sqft)</option>
+              <option value="selective">Selective ($3/sqft)</option>
+              <option value="gutToStuds">Gut to Studs ($5/sqft)</option>
             </select>
           </div>
         </div>
